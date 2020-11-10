@@ -1,0 +1,1705 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\Taiheng.Zhang17\Desktop\eco205.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 1 Dec 2019, 14:26:04
+
+{com}. describe
+
+{txt}Contains data
+  obs:{res}             0                          
+{txt} vars:{res}             0                          
+{txt} size:{res}             0                          
+{txt}Sorted by: 
+
+{com}. {txt}*(12 variables, 1200 observations pasted into data editor)
+{com}
+. label variable life "life expantacy"
+
+. label variable aging "population ages 65 and above(%)"
+
+. label variable mrate "mortality rate of infant baby(%)"
+
+. label variable bmi "body mass index"
+
+. label variable gdp "real GDP per capita"
+
+. label variable frate "female rate of population(%)"
+
+. label variable code "code for country"
+
+. label variable carb "CO2 commessions(kt)"
+
+. exit, clear
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\Taiheng.Zhang17\Desktop\eco205.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 1 Dec 2019, 14:34:54
+
+{com}. label variable life "life expantacy"
+
+. 
+. label variable aging "population ages 65 and above(%)"
+
+. 
+. label variable mrate "mortality rate of infant baby(%)"
+
+. 
+. label variable bmi "body mass index"
+
+. 
+. label variable gdp "real GDP per capita"
+
+. 
+. label variable frate "female rate of population(%)"
+
+. 
+. label variable code "code for country"
+
+. 
+. label variable carb "CO2 commessions(kt)"
+
+. describe
+
+{txt}Contains data
+  obs:{res}         1,200                          
+{txt} vars:{res}            12                          
+{txt} size:{res}        61,200                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:country        }{txt}{bind: str12   }{bind:{txt}%12s      }{space 1}{bind:         }{bind:  }{res}{res}Country{p_end}
+{p 0 48}{bind:year           }{txt}{bind: int     }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}Year{p_end}
+{p 0 48}{bind:life           }{txt}{bind: float   }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}life expantacy{p_end}
+{p 0 48}{bind:aging          }{txt}{bind: float   }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}population ages 65 and above(%){p_end}
+{p 0 48}{bind:mrate          }{txt}{bind: float   }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}mortality rate of infant baby(%){p_end}
+{p 0 48}{bind:bmi            }{txt}{bind: float   }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}body mass index{p_end}
+{p 0 48}{bind:gdp            }{txt}{bind: float   }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}real GDP per capita{p_end}
+{p 0 48}{bind:frate          }{txt}{bind: float   }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}female rate of population(%){p_end}
+{p 0 48}{bind:mort           }{txt}{bind: float   }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:female         }{txt}{bind: float   }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{bind:code           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code for country{p_end}
+{p 0 48}{bind:carb           }{txt}{bind: float   }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}CO2 commessions(kt){p_end}
+{txt}{hline}
+Sorted by: 
+{res}     Note: Dataset has changed since last saved.
+
+{com}. 
+. sum
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}country {c |}{res}          0
+{txt}{space 8}year {c |}{res}      1,200      1994.5    11.54821       1975       2014
+{txt}{space 8}life {c |}{res}      1,200    72.80571    7.053462     49.205   83.58781
+{txt}{space 7}aging {c |}{res}      1,200    9.060775    4.873549   2.755128   21.63534
+{txt}{space 7}mrate {c |}{res}      1,200    .0220902    .0237609      .0018      .1312
+{txt}{hline 13}{c +}{hline 57}
+{space 9}bmi {c |}{res}      1,200    5.646333    6.402211         .6       35.8
+{txt}{space 9}gdp {c |}{res}      1,200    18422.66    15273.13   263.9085   54705.73
+{txt}{space 7}frate {c |}{res}      1,200     .503268    .0097321   .4735827   .5257407
+{txt}{space 8}mort {c |}{res}      1,200    22.09017    23.76094        1.8      131.2
+{txt}{space 6}female {c |}{res}      1,200     50.3268    .9732134   47.35827   52.57408
+{txt}{hline 13}{c +}{hline 57}
+{space 8}code {c |}{res}      1,200        15.5     8.65905          1         30
+{txt}{space 8}carb {c |}{res}      1,200    499299.8     1231503    839.743   1.03e+07
+
+{com}. reg life mrate aging gdp carb frate bmi
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,200
+{txt}{hline 13}{c +}{hline 34}   F(6, 1193)      = {res}  2028.36
+{txt}       Model {c |} {res}  54326.412         6    9054.402   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 5325.43274     1,193  4.46390004   {txt}R-squared       ={res}    0.9107
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9103
+{txt}       Total {c |} {res} 59651.8447     1,199  49.7513301   {txt}Root MSE        =   {res} 2.1128
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-243.9463{col 26}{space 2} 4.148734{col 37}{space 1}  -58.80{col 46}{space 3}0.000{col 54}{space 4}-252.0859{col 67}{space 3}-235.8067
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .1506556{col 26}{space 2} .0201953{col 37}{space 1}    7.46{col 46}{space 3}0.000{col 54}{space 4} .1110334{col 67}{space 3} .1902778
+{txt}{space 9}gdp {c |}{col 14}{res}{space 2}   .00008{col 26}{space 2} 6.08e-06{col 37}{space 1}   13.16{col 46}{space 3}0.000{col 54}{space 4} .0000681{col 67}{space 3}  .000092
+{txt}{space 8}carb {c |}{col 14}{res}{space 2}-1.16e-07{col 26}{space 2} 5.07e-08{col 37}{space 1}   -2.30{col 46}{space 3}0.022{col 54}{space 4}-2.16e-07{col 67}{space 3}-1.69e-08
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-66.07129{col 26}{space 2} 8.258609{col 37}{space 1}   -8.00{col 46}{space 3}0.000{col 54}{space 4}-82.27431{col 67}{space 3}-49.86828
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2} .0359991{col 26}{space 2} .0146664{col 37}{space 1}    2.45{col 46}{space 3}0.014{col 54}{space 4} .0072244{col 67}{space 3} .0647739
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 108.4614{col 26}{space 2} 4.122098{col 37}{space 1}   26.31{col 46}{space 3}0.000{col 54}{space 4} 100.3741{col 67}{space 3} 116.5488
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. twoway (scatter life gdp)
+{res}
+{com}. gen lgdp=ln(gdp)
+
+. twoway (scatter life lgdp)
+{res}
+{com}. reg life mrate aging lgdp carb frate bmi
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,200
+{txt}{hline 13}{c +}{hline 34}   F(6, 1193)      = {res}  1871.34
+{txt}       Model {c |} {res} 53922.4815         6  8987.08026   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 5729.36319     1,193  4.80248382   {txt}R-squared       ={res}    0.9040
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9035
+{txt}       Total {c |} {res} 59651.8447     1,199  49.7513301   {txt}Root MSE        =   {res} 2.1915
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-242.5075{col 26}{space 2} 4.602096{col 37}{space 1}  -52.70{col 46}{space 3}0.000{col 54}{space 4}-251.5366{col 67}{space 3}-233.4784
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .2164772{col 26}{space 2} .0196847{col 37}{space 1}   11.00{col 46}{space 3}0.000{col 54}{space 4} .1778567{col 67}{space 3} .2550978
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2}  .866996{col 26}{space 2} .0988494{col 37}{space 1}    8.77{col 46}{space 3}0.000{col 54}{space 4} .6730579{col 67}{space 3} 1.060934
+{txt}{space 8}carb {c |}{col 14}{res}{space 2}-4.87e-08{col 26}{space 2} 5.22e-08{col 37}{space 1}   -0.93{col 46}{space 3}0.351{col 54}{space 4}-1.51e-07{col 67}{space 3} 5.37e-08
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-84.86514{col 26}{space 2}  8.73549{col 37}{space 1}   -9.71{col 46}{space 3}0.000{col 54}{space 4}-102.0038{col 67}{space 3}-67.72651
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2} .0699981{col 26}{space 2} .0158673{col 37}{space 1}    4.41{col 46}{space 3}0.000{col 54}{space 4} .0388672{col 67}{space 3} .1011291
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 110.5144{col 26}{space 2} 4.271215{col 37}{space 1}   25.87{col 46}{space 3}0.000{col 54}{space 4} 102.1345{col 67}{space 3} 118.8944
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. estat vif
+
+{txt}    Variable {c |}       VIF       1/VIF  
+{hline 13}{c +}{hline 22}
+{space 8}lgdp {c |} {res}     3.85    0.260035
+{txt}{space 7}mrate {c |} {res}     2.99    0.334972
+{txt}{space 9}bmi {c |} {res}     2.58    0.388133
+{txt}{space 7}aging {c |} {res}     2.30    0.435208
+{txt}{space 7}frate {c |} {res}     1.80    0.554187
+{txt}{space 8}carb {c |} {res}     1.03    0.970090
+{txt}{hline 13}{c +}{hline 22}
+    Mean VIF {c |} {res}     2.42
+
+{com}. pwcorr mrate aging lgdp carb frate bmi, star(0.01)
+
+             {txt}{c |}    mrate    aging     lgdp     carb    frate      bmi
+{hline 13}{c +}{hline 54}
+       mrate {c |} {res}  1.0000 
+       {txt}aging {c |} {res} -0.6267*  1.0000 
+        {txt}lgdp {c |} {res} -0.7793*  0.7109*  1.0000 
+        {txt}carb {c |} {res} -0.1062*  0.0600   0.0772*  1.0000 
+       {txt}frate {c |} {res} -0.4070*  0.5718*  0.5691* -0.0678   1.0000 
+         {txt}bmi {c |} {res}  0.6988* -0.5714* -0.7330* -0.0462  -0.5539*  1.0000 
+
+{com}. avplots
+{res}
+{com}. reg life mrate aging lgdp frate bmi
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,200
+{txt}{hline 13}{c +}{hline 34}   F(5, 1194)      = {res}  2245.68
+{txt}       Model {c |} {res} 53918.3057         5  10783.6611   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}   5733.539     1,194  4.80195896   {txt}R-squared       ={res}    0.9039
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9035
+{txt}       Total {c |} {res} 59651.8447     1,199  49.7513301   {txt}Root MSE        =   {res} 2.1913
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-242.2766{col 26}{space 2} 4.595176{col 37}{space 1}  -52.72{col 46}{space 3}0.000{col 54}{space 4}-251.2921{col 67}{space 3}-233.2611
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .2157908{col 26}{space 2} .0196699{col 37}{space 1}   10.97{col 46}{space 3}0.000{col 54}{space 4} .1771995{col 67}{space 3} .2543822
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} .8638042{col 26}{space 2} .0987847{col 37}{space 1}    8.74{col 46}{space 3}0.000{col 54}{space 4} .6699932{col 67}{space 3} 1.057615
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-83.79583{col 26}{space 2}  8.65942{col 37}{space 1}   -9.68{col 46}{space 3}0.000{col 54}{space 4}-100.7852{col 67}{space 3}-66.80646
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2} .0699745{col 26}{space 2} .0158664{col 37}{space 1}    4.41{col 46}{space 3}0.000{col 54}{space 4} .0388454{col 67}{space 3} .1011037
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 109.9828{col 26}{space 2}  4.23276{col 37}{space 1}   25.98{col 46}{space 3}0.000{col 54}{space 4} 101.6783{col 67}{space 3} 118.2873
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. estat vif
+
+{txt}    Variable {c |}       VIF       1/VIF  
+{hline 13}{c +}{hline 22}
+{space 8}lgdp {c |} {res}     3.84    0.260347
+{txt}{space 7}mrate {c |} {res}     2.98    0.335945
+{txt}{space 9}bmi {c |} {res}     2.58    0.388134
+{txt}{space 7}aging {c |} {res}     2.29    0.435818
+{txt}{space 7}frate {c |} {res}     1.77    0.563904
+{txt}{hline 13}{c +}{hline 22}
+    Mean VIF {c |} {res}     2.69
+
+{com}. pwcorr mrate aging lgdp frate bmi, star(0.01)
+
+             {txt}{c |}    mrate    aging     lgdp    frate      bmi
+{hline 13}{c +}{hline 45}
+       mrate {c |} {res}  1.0000 
+       {txt}aging {c |} {res} -0.6267*  1.0000 
+        {txt}lgdp {c |} {res} -0.7793*  0.7109*  1.0000 
+       {txt}frate {c |} {res} -0.4070*  0.5718*  0.5691*  1.0000 
+         {txt}bmi {c |} {res}  0.6988* -0.5714* -0.7330* -0.5539*  1.0000 
+
+{com}. predict e,res
+
+. kdensity e,normal
+{res}
+{com}. sum e,detail
+
+                          {txt}Residuals
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}-8.314935      -11.16876
+{txt} 5%    {res}-3.213176      -11.15514
+{txt}10%    {res}-2.402974      -11.07807       {txt}Obs         {res}      1,200
+{txt}25%    {res}-1.134024      -10.90419       {txt}Sum of Wgt. {res}      1,200
+
+{txt}50%    {res}  .027513                      {txt}Mean          {res} 8.73e-10
+                        {txt}Largest       Std. Dev.     {res} 2.186763
+{txt}75%    {res} 1.269272       5.847054
+{txt}90%    {res} 2.645506       5.936012       {txt}Variance      {res} 4.781934
+{txt}95%    {res} 3.095014       6.132518       {txt}Skewness      {res}-.9714714
+{txt}99%    {res} 5.061208       6.384333       {txt}Kurtosis      {res} 7.181624
+
+{com}. rvfplot, yline(0)
+{res}
+{com}. dis 2*sqrt(5/1200)
+{res}.12909944
+
+{com}. predict dfits, dfits
+
+. list life mrate aging lgdp frate bmi country year dfits if abs(dfits)>0.12909944
+
+      {txt}{c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+  81. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 60.884 {txt}{c |} {res}.0902 {txt}{c |} {res}3.63208 {txt}{c |} {res}8.825457 {txt}{c |} {res}.501794 {txt}{c |} {res} 9.9 {txt}{c |} {res}      Brazil {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1975              {txt}{c |}              {res} .3354416              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+  82. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 61.243 {txt}{c |} {res}.0877 {txt}{c |} {res}3.68222 {txt}{c |} {res}8.895129 {txt}{c |} {res}.501802 {txt}{c |} {res} 9.6 {txt}{c |} {res}      Brazil {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1976              {txt}{c |}              {res} .3110566              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+  83. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 61.595 {txt}{c |} {res}.0852 {txt}{c |} {res} 3.7275 {txt}{c |} {res}8.916451 {txt}{c |} {res}.501805 {txt}{c |} {res} 9.4 {txt}{c |} {res}      Brazil {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1977              {txt}{c |}              {res} .2857663              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+  84. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 61.942 {txt}{c |} {res}.0825 {txt}{c |} {res}3.76769 {txt}{c |} {res}8.924562 {txt}{c |} {res} .50181 {txt}{c |} {res} 9.2 {txt}{c |} {res}      Brazil {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1978              {txt}{c |}              {res} .2577516              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+  85. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 62.286 {txt}{c |} {res}.0797 {txt}{c |} {res}3.80171 {txt}{c |} {res}8.966365 {txt}{c |} {res}.501821 {txt}{c |} {res} 8.9 {txt}{c |} {res}      Brazil {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1979              {txt}{c |}              {res} .2305958              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+  86. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}  62.63 {txt}{c |} {res}.0766 {txt}{c |} {res}3.82962 {txt}{c |} {res}9.029956 {txt}{c |} {res}.501844 {txt}{c |} {res} 8.7 {txt}{c |} {res}      Brazil {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1980              {txt}{c |}              {res} .1999236              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+  87. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 62.976 {txt}{c |} {res}.0736 {txt}{c |} {res}3.86373 {txt}{c |} {res}8.961475 {txt}{c |} {res}.501879 {txt}{c |} {res} 8.5 {txt}{c |} {res}      Brazil {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1981              {txt}{c |}              {res} .1718684              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+  88. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 63.326 {txt}{c |} {res}.0706 {txt}{c |} {res}3.89142 {txt}{c |} {res}8.943843 {txt}{c |} {res}.501925 {txt}{c |} {res} 8.2 {txt}{c |} {res}      Brazil {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1982              {txt}{c |}              {res} .1472052              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 201. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 51.012 {txt}{c |} {res}.1312 {txt}{c |} {res}10.2916 {txt}{c |} {res}6.008549 {txt}{c |} {res}.481833 {txt}{c |} {res}35.8 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1975              {txt}{c |}              {res} .3239898              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 202. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}  51.63 {txt}{c |} {res}.1281 {txt}{c |} {res}3.47776 {txt}{c |} {res}6.001997 {txt}{c |} {res}.481822 {txt}{c |} {res}35.5 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1976              {txt}{c |}              {res} .3806881              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 203. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 52.222 {txt}{c |} {res}.1248 {txt}{c |} {res} 3.5207 {txt}{c |} {res} 6.04912 {txt}{c |} {res}.481829 {txt}{c |} {res}35.3 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1977              {txt}{c |}              {res} .3529925              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 204. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 52.786 {txt}{c |} {res}.1213 {txt}{c |} {res}3.55392 {txt}{c |} {res}6.081806 {txt}{c |} {res}.481842 {txt}{c |} {res}35.1 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1978              {txt}{c |}              {res} .3207317              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 205. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 53.319 {txt}{c |} {res} .118 {txt}{c |} {res}3.57886 {txt}{c |} {res}6.005054 {txt}{c |} {res}.481844 {txt}{c |} {res}34.8 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1979              {txt}{c |}              {res} .2963342              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 206. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 53.814 {txt}{c |} {res}.1147 {txt}{c |} {res}3.59692 {txt}{c |} {res}6.047145 {txt}{c |} {res}.481826 {txt}{c |} {res}34.6 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1980              {txt}{c |}              {res} .2653829              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 207. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 54.268 {txt}{c |} {res}.1116 {txt}{c |} {res}3.60936 {txt}{c |} {res}6.082234 {txt}{c |} {res}.481784 {txt}{c |} {res}34.3 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1981              {txt}{c |}              {res} .2367089              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 208. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 54.686 {txt}{c |} {res}.1087 {txt}{c |} {res}3.64511 {txt}{c |} {res}6.093115 {txt}{c |} {res}.481722 {txt}{c |} {res}  34 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1982              {txt}{c |}              {res} .2111664              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 209. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 55.074 {txt}{c |} {res}.1059 {txt}{c |} {res}3.67098 {txt}{c |} {res}6.140266 {txt}{c |} {res}.481646 {txt}{c |} {res}33.8 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1983              {txt}{c |}              {res} .1847417              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 210. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 55.441 {txt}{c |} {res}.1034 {txt}{c |} {res}3.68833 {txt}{c |} {res}6.154803 {txt}{c |} {res}.481561 {txt}{c |} {res}33.5 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1984              {txt}{c |}              {res} .1646433              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 211. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 55.801 {txt}{c |} {res}.1009 {txt}{c |} {res}3.69942 {txt}{c |} {res}6.183414 {txt}{c |} {res}.481471 {txt}{c |} {res}33.2 {txt}{c |} {res}       India {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1985              {txt}{c |}              {res} .1441919              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 260. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}79.6871 {txt}{c |} {res}.0042 {txt}{c |} {res}2.93334 {txt}{c |} {res}10.58258 {txt}{c |} {res}  .5077 {txt}{c |} {res} 7.9 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1994              {txt}{c |}              {res} .1475589              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 261. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}79.5363 {txt}{c |} {res}.0041 {txt}{c |} {res}2.91967 {txt}{c |} {res}10.60581 {txt}{c |} {res}.507859 {txt}{c |} {res} 7.9 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1995              {txt}{c |}              {res}  .139805              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 262. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}80.2002 {txt}{c |} {res} .004 {txt}{c |} {res}2.94372 {txt}{c |} {res}10.63381 {txt}{c |} {res}.508045 {txt}{c |} {res} 7.8 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1996              {txt}{c |}              {res} .1727118              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 263. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}80.4241 {txt}{c |} {res}.0038 {txt}{c |} {res}2.96924 {txt}{c |} {res}10.64213 {txt}{c |} {res}.508252 {txt}{c |} {res} 7.8 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1997              {txt}{c |}              {res}  .182585              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 264. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}80.5015 {txt}{c |} {res}.0036 {txt}{c |} {res}2.99635 {txt}{c |} {res}10.62806 {txt}{c |} {res}.508473 {txt}{c |} {res} 7.7 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1998              {txt}{c |}              {res} .1848402              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 265. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}80.5707 {txt}{c |} {res}.0034 {txt}{c |} {res}3.02524 {txt}{c |} {res}10.62371 {txt}{c |} {res}.508698 {txt}{c |} {res} 7.7 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1999              {txt}{c |}              {res} .1869116              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 266. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}81.0761 {txt}{c |} {res}.0033 {txt}{c |} {res}3.05662 {txt}{c |} {res}10.64946 {txt}{c |} {res} .50892 {txt}{c |} {res} 7.6 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2000              {txt}{c |}              {res}  .212156              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 267. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}81.4171 {txt}{c |} {res}.0031 {txt}{c |} {res}3.11456 {txt}{c |} {res} 10.6511 {txt}{c |} {res}.509135 {txt}{c |} {res} 7.6 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2001              {txt}{c |}              {res} .2274576              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 268. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}81.5634 {txt}{c |} {res} .003 {txt}{c |} {res} 3.1741 {txt}{c |} {res}10.64996 {txt}{c |} {res}.509345 {txt}{c |} {res} 7.5 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2002              {txt}{c |}              {res} .2334087              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 269. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}  81.76 {txt}{c |} {res}.0029 {txt}{c |} {res}3.23451 {txt}{c |} {res}10.66298 {txt}{c |} {res}.509551 {txt}{c |} {res} 7.5 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2003              {txt}{c |}              {res}  .242402              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 270. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}82.0302 {txt}{c |} {res}.0028 {txt}{c |} {res}3.29365 {txt}{c |} {res}10.68445 {txt}{c |} {res}.509754 {txt}{c |} {res} 7.4 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2004              {txt}{c |}              {res} .2549074              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 271. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}81.9251 {txt}{c |} {res}.0028 {txt}{c |} {res}3.34867 {txt}{c |} {res}10.70085 {txt}{c |} {res}.509955 {txt}{c |} {res} 7.3 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2005              {txt}{c |}              {res} .2493031              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 272. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 82.322 {txt}{c |} {res}.0027 {txt}{c |} {res}3.40228 {txt}{c |} {res}10.71432 {txt}{c |} {res}.510155 {txt}{c |} {res} 7.3 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2006              {txt}{c |}              {res}  .268861              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 273. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}82.5071 {txt}{c |} {res}.0026 {txt}{c |} {res}3.45949 {txt}{c |} {res}10.72958 {txt}{c |} {res}.510352 {txt}{c |} {res} 7.2 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2007              {txt}{c |}              {res} .2769772              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 274. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}82.5876 {txt}{c |} {res}.0025 {txt}{c |} {res}3.51794 {txt}{c |} {res}10.71809 {txt}{c |} {res} .51054 {txt}{c |} {res} 7.2 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2008              {txt}{c |}              {res} .2796078              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 275. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}82.9315 {txt}{c |} {res}.0024 {txt}{c |} {res}3.57523 {txt}{c |} {res}10.66253 {txt}{c |} {res}.510712 {txt}{c |} {res} 7.1 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2009              {txt}{c |}              {res} .2940653              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 276. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}82.8427 {txt}{c |} {res}.0024 {txt}{c |} {res}3.63058 {txt}{c |} {res}10.70342 {txt}{c |} {res}.510865 {txt}{c |} {res} 7.1 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2010              {txt}{c |}              {res}  .290068              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 277. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}82.5912 {txt}{c |} {res}.0023 {txt}{c |} {res}3.64042 {txt}{c |} {res}10.70411 {txt}{c |} {res}.510997 {txt}{c |} {res}   7 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2011              {txt}{c |}              {res} .2764574              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 278. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}83.0961 {txt}{c |} {res}.0022 {txt}{c |} {res}3.65599 {txt}{c |} {res}10.72055 {txt}{c |} {res} .51111 {txt}{c |} {res}   7 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2012              {txt}{c |}              {res}  .301977              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 279. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 83.332 {txt}{c |} {res}.0021 {txt}{c |} {res}3.67874 {txt}{c |} {res} 10.7418 {txt}{c |} {res}.511207 {txt}{c |} {res}   7 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2013              {txt}{c |}              {res} .3136788              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 280. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}83.5878 {txt}{c |} {res}.0021 {txt}{c |} {res}3.71086 {txt}{c |} {res}10.74687 {txt}{c |} {res}.511294 {txt}{c |} {res}   7 {txt}{c |} {res}       Japan {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2014              {txt}{c |}              {res} .3267488              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 401. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 63.915 {txt}{c |} {res}.0624 {txt}{c |} {res}4.08445 {txt}{c |} {res}  5.6069 {txt}{c |} {res}.486859 {txt}{c |} {res}13.4 {txt}{c |} {res}       China {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1975              {txt}{c |}              {res} .1575277              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 402. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 64.631 {txt}{c |} {res} .059 {txt}{c |} {res}4.19687 {txt}{c |} {res}5.575603 {txt}{c |} {res}.486842 {txt}{c |} {res}13.2 {txt}{c |} {res}       China {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1976              {txt}{c |}              {res} .1566991              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 403. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 65.278 {txt}{c |} {res}.0557 {txt}{c |} {res}4.31177 {txt}{c |} {res}5.634946 {txt}{c |} {res} .48682 {txt}{c |} {res}13.1 {txt}{c |} {res}       China {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1977              {txt}{c |}              {res} .1445739              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 404. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 65.857 {txt}{c |} {res}.0528 {txt}{c |} {res}4.43022 {txt}{c |} {res}5.727132 {txt}{c |} {res}.486799 {txt}{c |} {res}12.9 {txt}{c |} {res}       China {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1978              {txt}{c |}              {res} .1317959              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 481. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}70.2197 {txt}{c |} {res}.0141 {txt}{c |} {res}4.11276 {txt}{c |} {res}9.177183 {txt}{c |} {res}.489136 {txt}{c |} {res} 9.4 {txt}{c |} {res}   Singapore {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1975              {txt}{c |}              {res}-.1524265              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 482. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 70.594 {txt}{c |} {res}.0129 {txt}{c |} {res}4.24853 {txt}{c |} {res}9.235446 {txt}{c |} {res}.489302 {txt}{c |} {res} 9.3 {txt}{c |} {res}   Singapore {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1976              {txt}{c |}              {res} -.153247              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 483. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}70.9609 {txt}{c |} {res}.0125 {txt}{c |} {res}4.38927 {txt}{c |} {res}9.287866 {txt}{c |} {res}.489492 {txt}{c |} {res} 9.2 {txt}{c |} {res}   Singapore {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1977              {txt}{c |}              {res} -.146282              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 484. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}71.3233 {txt}{c |} {res}.0123 {txt}{c |} {res}4.52395 {txt}{c |} {res}9.350666 {txt}{c |} {res}.489678 {txt}{c |} {res} 9.1 {txt}{c |} {res}   Singapore {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1978              {txt}{c |}              {res}-.1383401              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 485. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}71.6827 {txt}{c |} {res}.0122 {txt}{c |} {res}4.63809 {txt}{c |} {res} 9.42929 {txt}{c |} {res} .48982 {txt}{c |} {res}   9 {txt}{c |} {res}   Singapore {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1979              {txt}{c |}              {res}-.1309523              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 583. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 59.489 {txt}{c |} {res}.0468 {txt}{c |} {res}4.40628 {txt}{c |} {res}8.664252 {txt}{c |} {res}.506823 {txt}{c |} {res} 7.7 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1997              {txt}{c |}              {res}-.1468013              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 584. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 58.315 {txt}{c |} {res}.0478 {txt}{c |} {res}4.44655 {txt}{c |} {res}8.653206 {txt}{c |} {res}.506895 {txt}{c |} {res} 7.5 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1998              {txt}{c |}              {res}-.1733482              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 585. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 57.144 {txt}{c |} {res}.0484 {txt}{c |} {res}4.48264 {txt}{c |} {res} 8.66201 {txt}{c |} {res}.506922 {txt}{c |} {res} 7.3 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1999              {txt}{c |}              {res}-.2033116              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 586. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 56.048 {txt}{c |} {res} .049 {txt}{c |} {res}4.51573 {txt}{c |} {res}8.689062 {txt}{c |} {res}.506944 {txt}{c |} {res} 7.2 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2000              {txt}{c |}              {res}-.2332645              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 587. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 55.089 {txt}{c |} {res}.0494 {txt}{c |} {res}4.55422 {txt}{c |} {res}8.702371 {txt}{c |} {res} .50697 {txt}{c |} {res}   7 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2001              {txt}{c |}              {res}-.2603076              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 588. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}  54.31 {txt}{c |} {res}  .05 {txt}{c |} {res}4.58177 {txt}{c |} {res}8.726067 {txt}{c |} {res}.506988 {txt}{c |} {res} 6.9 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2002              {txt}{c |}              {res}-.2833113              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 589. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 53.749 {txt}{c |} {res}.0509 {txt}{c |} {res}4.60006 {txt}{c |} {res}8.742893 {txt}{c |} {res}.506996 {txt}{c |} {res} 6.7 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2003              {txt}{c |}              {res}-.3006003              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 590. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 53.444 {txt}{c |} {res}.0508 {txt}{c |} {res} 4.6099 {txt}{c |} {res}8.775254 {txt}{c |} {res}.506985 {txt}{c |} {res} 6.6 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2004              {txt}{c |}              {res} -.312945              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 591. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 53.447 {txt}{c |} {res}.0497 {txt}{c |} {res}4.61184 {txt}{c |} {res}8.814301 {txt}{c |} {res}.506951 {txt}{c |} {res} 6.5 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2005              {txt}{c |}              {res} -.317853              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 592. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 53.795 {txt}{c |} {res}.0481 {txt}{c |} {res}4.66269 {txt}{c |} {res} 8.85619 {txt}{c |} {res}.506901 {txt}{c |} {res} 6.3 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2006              {txt}{c |}              {res}-.3133014              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 593. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 54.452 {txt}{c |} {res}.0455 {txt}{c |} {res}4.70302 {txt}{c |} {res}8.895493 {txt}{c |} {res} .50684 {txt}{c |} {res} 6.2 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2007              {txt}{c |}              {res} -.300651              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 594. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}  55.36 {txt}{c |} {res}.0429 {txt}{c |} {res}4.73171 {txt}{c |} {res}8.913563 {txt}{c |} {res}.506772 {txt}{c |} {res}   6 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2008              {txt}{c |}              {res}-.2814747              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 595. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}  56.46 {txt}{c |} {res}.0403 {txt}{c |} {res}4.74747 {txt}{c |} {res}8.884148 {txt}{c |} {res}.506697 {txt}{c |} {res} 5.9 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2009              {txt}{c |}              {res}-.2558753              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 596. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 57.669 {txt}{c |} {res}.0382 {txt}{c |} {res}4.75106 {txt}{c |} {res}8.899539 {txt}{c |} {res}.506619 {txt}{c |} {res} 5.7 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2010              {txt}{c |}              {res}-.2330778              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 597. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 58.895 {txt}{c |} {res}.0366 {txt}{c |} {res} 4.7997 {txt}{c |} {res}8.916599 {txt}{c |} {res}.506535 {txt}{c |} {res} 5.6 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2011              {txt}{c |}              {res}-.2088105              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 598. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}  60.06 {txt}{c |} {res}.0353 {txt}{c |} {res}4.84481 {txt}{c |} {res}8.922661 {txt}{c |} {res}.506453 {txt}{c |} {res} 5.4 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2012              {txt}{c |}              {res}-.1861349              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 599. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 61.099 {txt}{c |} {res}.0341 {txt}{c |} {res}4.89312 {txt}{c |} {res}8.931151 {txt}{c |} {res}.506393 {txt}{c |} {res} 5.3 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2013              {txt}{c |}              {res}-.1666883              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+ 600. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 61.968 {txt}{c |} {res}.0329 {txt}{c |} {res}4.95295 {txt}{c |} {res}8.933621 {txt}{c |} {res}.506381 {txt}{c |} {res} 5.1 {txt}{c |} {res}South Africa {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2014              {txt}{c |}              {res}-.1520044              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1004. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 50.682 {txt}{c |} {res} .112 {txt}{c |} {res}3.73038 {txt}{c |} {res} 7.20804 {txt}{c |} {res}.504704 {txt}{c |} {res}13.9 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1978              {txt}{c |}              {res} .1329478              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1005. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 51.123 {txt}{c |} {res}.1105 {txt}{c |} {res}3.70018 {txt}{c |} {res}7.236979 {txt}{c |} {res}.504532 {txt}{c |} {res}13.7 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}1979              {txt}{c |}              {res} .1342257              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1028. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 51.536 {txt}{c |} {res}.0862 {txt}{c |} {res}3.12137 {txt}{c |} {res}7.074856 {txt}{c |} {res}.502071 {txt}{c |} {res} 9.5 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2002              {txt}{c |}              {res} -.134243              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1029. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 51.908 {txt}{c |} {res}.0837 {txt}{c |} {res}3.09174 {txt}{c |} {res}7.092778 {txt}{c |} {res}.501953 {txt}{c |} {res} 9.3 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2003              {txt}{c |}              {res}-.1404037              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1030. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 52.321 {txt}{c |} {res}.0812 {txt}{c |} {res} 3.0549 {txt}{c |} {res}7.131466 {txt}{c |} {res}.501816 {txt}{c |} {res} 9.2 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2004              {txt}{c |}              {res}-.1446029              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1031. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}  52.76 {txt}{c |} {res} .079 {txt}{c |} {res}3.01169 {txt}{c |} {res}7.124373 {txt}{c |} {res}.501665 {txt}{c |} {res}   9 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2005              {txt}{c |}              {res}-.1440054              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1032. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 53.215 {txt}{c |} {res}.0767 {txt}{c |} {res}2.98849 {txt}{c |} {res}7.131094 {txt}{c |} {res}.501497 {txt}{c |} {res} 8.8 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2006              {txt}{c |}              {res}-.1441326              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1033. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 53.681 {txt}{c |} {res}.0746 {txt}{c |} {res}2.95889 {txt}{c |} {res}7.151533 {txt}{c |} {res}.501317 {txt}{c |} {res} 8.7 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2007              {txt}{c |}              {res}-.1422524              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1034. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 54.153 {txt}{c |} {res}.0721 {txt}{c |} {res}2.92404 {txt}{c |} {res}7.158318 {txt}{c |} {res}.501137 {txt}{c |} {res} 8.5 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2008              {txt}{c |}              {res}-.1431803              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1035. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 54.627 {txt}{c |} {res}.0699 {txt}{c |} {res} 2.8852 {txt}{c |} {res}7.152543 {txt}{c |} {res} .50097 {txt}{c |} {res} 8.4 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2009              {txt}{c |}              {res}-.1414509              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1036. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 55.101 {txt}{c |} {res}.0671 {txt}{c |} {res}2.84361 {txt}{c |} {res}7.158718 {txt}{c |} {res}.500827 {txt}{c |} {res} 8.2 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2010              {txt}{c |}              {res}-.1445916              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1037. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 55.581 {txt}{c |} {res}.0649 {txt}{c |} {res}2.82661 {txt}{c |} {res}7.171776 {txt}{c |} {res}.500711 {txt}{c |} {res} 8.1 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2011              {txt}{c |}              {res} -.143246              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1038. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 56.073 {txt}{c |} {res}.0625 {txt}{c |} {res}2.80519 {txt}{c |} {res}7.188894 {txt}{c |} {res}.500616 {txt}{c |} {res} 7.9 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2012              {txt}{c |}              {res} -.143507              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1039. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 56.576 {txt}{c |} {res}  .06 {txt}{c |} {res}2.78082 {txt}{c |} {res}7.214345 {txt}{c |} {res}.500533 {txt}{c |} {res} 7.7 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2013              {txt}{c |}              {res}-.1442968              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1040. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res} 57.083 {txt}{c |} {res}.0579 {txt}{c |} {res}2.75513 {txt}{c |} {res}7.244504 {txt}{c |} {res} .50045 {txt}{c |} {res} 7.6 {txt}{c |} {res}    Cameroon {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2014              {txt}{c |}              {res}-.1419464              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1080. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}81.1219 {txt}{c |} {res} .003 {txt}{c |} {res}20.3217 {txt}{c |} {res}9.977365 {txt}{c |} {res}.525741 {txt}{c |} {res}   1 {txt}{c |} {res}    Portugal {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2014              {txt}{c |}              {res} .1301373              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+      {c TLC}{hline 9}{c TT}{hline 7}{c TT}{hline 9}{c TT}{hline 10}{c TT}{hline 9}{c TT}{hline 6}{c TT}{hline 14}{c TRC}
+1200. {c |}    life {c |} mrate {c |}   aging {c |}     lgdp {c |}   frate {c |}  bmi {c |}      country {c |}
+      {c |} {res}83.0902 {txt}{c |} {res} .003 {txt}{c |} {res}21.6353 {txt}{c |} {res}10.42276 {txt}{c |} {res}.515154 {txt}{c |} {res}  .9 {txt}{c |} {res}       Italy {txt}{c |}
+      {c LT}{hline 9}{c BT}{hline 7}{c BT}{hline 9}{c BT}{hline 4}{c TT}{hline 5}{c BT}{hline 9}{c BT}{hline 6}{c BT}{hline 14}{c RT}
+      {c |}              year              {c |}                  dfits              {c |}
+      {c |}              {res}2014              {txt}{c |}              {res} .1333911              {txt}{c |}
+      {c BLC}{hline 32}{c BT}{hline 37}{c BRC}
+
+{com}. drop if code==3
+{txt}(40 observations deleted)
+
+{com}. drop if code==6
+{txt}(40 observations deleted)
+
+{com}. drop if code==7
+{txt}(40 observations deleted)
+
+{com}. drop if code==15
+{txt}(40 observations deleted)
+
+{com}. drop if code==26
+{txt}(40 observations deleted)
+
+{com}. reg life mrate aging lgdp frate bmi
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,000
+{txt}{hline 13}{c +}{hline 34}   F(5, 994)       = {res}  1524.01
+{txt}       Model {c |} {res} 17898.5963         5  3579.71927   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 2334.78956       994  2.34888286   {txt}R-squared       ={res}    0.8846
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.8840
+{txt}       Total {c |} {res} 20233.3859       999  20.2536395   {txt}Root MSE        =   {res} 1.5326
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-209.5843{col 26}{space 2} 6.266539{col 37}{space 1}  -33.44{col 46}{space 3}0.000{col 54}{space 4}-221.8815{col 67}{space 3}-197.2872
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .2890791{col 26}{space 2} .0195531{col 37}{space 1}   14.78{col 46}{space 3}0.000{col 54}{space 4} .2507091{col 67}{space 3} .3274492
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} .2322374{col 26}{space 2} .0889859{col 37}{space 1}    2.61{col 46}{space 3}0.009{col 54}{space 4} .0576155{col 67}{space 3} .4068592
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-80.41048{col 26}{space 2} 6.748663{col 37}{space 1}  -11.92{col 46}{space 3}0.000{col 54}{space 4}-93.65374{col 67}{space 3}-67.16722
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2}-.1081243{col 26}{space 2} .0157999{col 37}{space 1}   -6.84{col 46}{space 3}0.000{col 54}{space 4}-.1391293{col 67}{space 3}-.0771193
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 113.7861{col 26}{space 2} 3.354443{col 37}{space 1}   33.92{col 46}{space 3}0.000{col 54}{space 4} 107.2035{col 67}{space 3} 120.3687
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. predict e1, res
+
+. kdensity e1,normal
+{res}
+{com}. sum e1,detail
+
+                          {txt}Residuals
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}-3.562656      -3.724002
+{txt} 5%    {res}-2.577584      -3.714348
+{txt}10%    {res}-2.021054      -3.705683       {txt}Obs         {res}      1,000
+{txt}25%    {res}-1.024952      -3.701833       {txt}Sum of Wgt. {res}      1,000
+
+{txt}50%    {res}-.0521727                      {txt}Mean          {res} 2.23e-09
+                        {txt}Largest       Std. Dev.     {res} 1.528766
+{txt}75%    {res} .9488532       3.278063
+{txt}90%    {res} 2.219328       3.307716       {txt}Variance      {res} 2.337127
+{txt}95%    {res} 2.617699       3.426902       {txt}Skewness      {res}-.0114595
+{txt}99%    {res} 3.083454       3.479577       {txt}Kurtosis      {res} 2.599971
+
+{com}. linktest
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,000
+{txt}{hline 13}{c +}{hline 34}   F(2, 997)       = {res}  4412.15
+{txt}       Model {c |} {res}  18179.411         2  9089.70548   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 2053.97495       997  2.06015542   {txt}R-squared       ={res}    0.8985
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.8983
+{txt}       Total {c |} {res} 20233.3859       999  20.2536395   {txt}Root MSE        =   {res} 1.4353
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}_hat {c |}{col 14}{res}{space 2} -2.96981{col 26}{space 2} .3401934{col 37}{space 1}   -8.73{col 46}{space 3}0.000{col 54}{space 4}-3.637387{col 67}{space 3}-2.302232
+{txt}{space 6}_hatsq {c |}{col 14}{res}{space 2} .0273533{col 26}{space 2} .0023429{col 37}{space 1}   11.68{col 46}{space 3}0.000{col 54}{space 4} .0227557{col 67}{space 3} .0319508
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 143.4318{col 26}{space 2} 12.31143{col 37}{space 1}   11.65{col 46}{space 3}0.000{col 54}{space 4} 119.2725{col 67}{space 3} 167.5911
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. estat hettest,iid rhs
+
+{txt}Breusch-Pagan / Cook-Weisberg test for heteroskedasticity 
+         Ho: Constant variance
+{p 9 20}Variables: mrate aging lgdp frate bmi
+
+{col 10}chi2({res}5{txt}){col 23}={res}    60.34
+{txt}{col 10}Prob > chi2{col 23}={res}   0.0000
+
+{com}. reg life mrate aging lgdp frate bmi,robust
+
+{txt}Linear regression                               Number of obs     = {res}     1,000
+                                                {txt}F(5, 994)         =  {res}  1989.95
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.8846
+                                                {txt}Root MSE          =    {res} 1.5326
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-209.5843{col 26}{space 2}  5.98129{col 37}{space 1}  -35.04{col 46}{space 3}0.000{col 54}{space 4}-221.3217{col 67}{space 3}-197.8469
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .2890791{col 26}{space 2} .0201946{col 37}{space 1}   14.31{col 46}{space 3}0.000{col 54}{space 4} .2494502{col 67}{space 3} .3287081
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} .2322374{col 26}{space 2} .0790393{col 37}{space 1}    2.94{col 46}{space 3}0.003{col 54}{space 4} .0771343{col 67}{space 3} .3873405
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-80.41048{col 26}{space 2} 7.672485{col 37}{space 1}  -10.48{col 46}{space 3}0.000{col 54}{space 4}-95.46661{col 67}{space 3}-65.35435
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2}-.1081243{col 26}{space 2} .0121151{col 37}{space 1}   -8.92{col 46}{space 3}0.000{col 54}{space 4}-.1318984{col 67}{space 3}-.0843502
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 113.7861{col 26}{space 2} 3.624459{col 37}{space 1}   31.39{col 46}{space 3}0.000{col 54}{space 4} 106.6736{col 67}{space 3} 120.8985
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. linktest
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,000
+{txt}{hline 13}{c +}{hline 34}   F(2, 997)       = {res}  4412.15
+{txt}       Model {c |} {res}  18179.411         2  9089.70548   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 2053.97495       997  2.06015542   {txt}R-squared       ={res}    0.8985
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.8983
+{txt}       Total {c |} {res} 20233.3859       999  20.2536395   {txt}Root MSE        =   {res} 1.4353
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}_hat {c |}{col 14}{res}{space 2} -2.96981{col 26}{space 2} .3401934{col 37}{space 1}   -8.73{col 46}{space 3}0.000{col 54}{space 4}-3.637387{col 67}{space 3}-2.302232
+{txt}{space 6}_hatsq {c |}{col 14}{res}{space 2} .0273533{col 26}{space 2} .0023429{col 37}{space 1}   11.68{col 46}{space 3}0.000{col 54}{space 4} .0227557{col 67}{space 3} .0319508
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 143.4318{col 26}{space 2} 12.31143{col 37}{space 1}   11.65{col 46}{space 3}0.000{col 54}{space 4} 119.2725{col 67}{space 3} 167.5911
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. test lgdp mrate
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}lgdp = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} mrate = 0{p_end}
+
+{txt}       F(  2,   994) ={res}  759.36
+{txt}{col 13}Prob > F ={res}    0.0000
+
+{com}. test lgdp aging
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}lgdp = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} aging = 0{p_end}
+
+{txt}       F(  2,   994) ={res}  129.66
+{txt}{col 13}Prob > F ={res}    0.0000
+
+{com}. sum lgdp,detail
+
+                            {txt}lgdp
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 6.230675       5.575603
+{txt} 5%    {res} 7.359438         5.6069
+{txt}10%    {res} 7.883502       5.634946       {txt}Obs         {res}      1,000
+{txt}25%    {res} 8.449076       5.727132       {txt}Sum of Wgt. {res}      1,000
+
+{txt}50%    {res} 9.890263                      {txt}Mean          {res} 9.425625
+                        {txt}Largest       Std. Dev.     {res} 1.146288
+{txt}75%    {res} 10.37837       10.87793
+{txt}90%    {res} 10.62791       10.89067       {txt}Variance      {res} 1.313975
+{txt}95%    {res} 10.73119       10.89928       {txt}Skewness      {res}-.7539645
+{txt}99%    {res} 10.83997       10.90972       {txt}Kurtosis      {res} 2.691743
+
+{com}. margins, at(lgdp = (6 7 8 9 10))
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}     1,000
+{txt}Model VCE{col 14}: {res}Robust
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Linear prediction, predict()}{p_end}
+{p2colreset}{...}
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:1._at}:{space 1}{res:{txt:lgdp}{space 12}{txt:=} {space 10}6}{p_end}
+{p2colreset}{...}
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:2._at}:{space 1}{res:{txt:lgdp}{space 12}{txt:=} {space 10}7}{p_end}
+{p2colreset}{...}
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:3._at}:{space 1}{res:{txt:lgdp}{space 12}{txt:=} {space 10}8}{p_end}
+{p2colreset}{...}
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:4._at}:{space 1}{res:{txt:lgdp}{space 12}{txt:=} {space 10}9}{p_end}
+{p2colreset}{...}
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:5._at}:{space 1}{res:{txt:lgdp}{space 12}{txt:=} {space 9}10}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}_at {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} 73.81377{col 26}{space 2} .2604975{col 37}{space 1}  283.36{col 46}{space 3}0.000{col 54}{space 4} 73.30258{col 67}{space 3} 74.32496
+{txt}{space 10}2  {c |}{col 14}{res}{space 2} 74.04601{col 26}{space 2}  .183254{col 37}{space 1}  404.06{col 46}{space 3}0.000{col 54}{space 4}  73.6864{col 67}{space 3} 74.40562
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} 74.27825{col 26}{space 2} .1086255{col 37}{space 1}  683.80{col 46}{space 3}0.000{col 54}{space 4} 74.06509{col 67}{space 3} 74.49141
+{txt}{space 10}4  {c |}{col 14}{res}{space 2} 74.51048{col 26}{space 2} .0501141{col 37}{space 1} 1486.82{col 46}{space 3}0.000{col 54}{space 4} 74.41214{col 67}{space 3} 74.60883
+{txt}{space 10}5  {c |}{col 14}{res}{space 2} 74.74272{col 26}{space 2}  .075616{col 37}{space 1}  988.45{col 46}{space 3}0.000{col 54}{space 4} 74.59434{col 67}{space 3} 74.89111
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. marginsplot
+{res}
+{text}{p 2 6 2}Variables that uniquely identify margins: lgdp{p_end}
+{res}
+{com}. tabulate code if year==2014,gen(reg)
+
+   {txt}code for {c |}
+    country {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}          1        4.00        4.00
+{txt}          2 {c |}{res}          1        4.00        8.00
+{txt}          4 {c |}{res}          1        4.00       12.00
+{txt}          5 {c |}{res}          1        4.00       16.00
+{txt}          8 {c |}{res}          1        4.00       20.00
+{txt}          9 {c |}{res}          1        4.00       24.00
+{txt}         10 {c |}{res}          1        4.00       28.00
+{txt}         11 {c |}{res}          1        4.00       32.00
+{txt}         12 {c |}{res}          1        4.00       36.00
+{txt}         13 {c |}{res}          1        4.00       40.00
+{txt}         14 {c |}{res}          1        4.00       44.00
+{txt}         16 {c |}{res}          1        4.00       48.00
+{txt}         17 {c |}{res}          1        4.00       52.00
+{txt}         18 {c |}{res}          1        4.00       56.00
+{txt}         19 {c |}{res}          1        4.00       60.00
+{txt}         20 {c |}{res}          1        4.00       64.00
+{txt}         21 {c |}{res}          1        4.00       68.00
+{txt}         22 {c |}{res}          1        4.00       72.00
+{txt}         23 {c |}{res}          1        4.00       76.00
+{txt}         24 {c |}{res}          1        4.00       80.00
+{txt}         25 {c |}{res}          1        4.00       84.00
+{txt}         27 {c |}{res}          1        4.00       88.00
+{txt}         28 {c |}{res}          1        4.00       92.00
+{txt}         29 {c |}{res}          1        4.00       96.00
+{txt}         30 {c |}{res}          1        4.00      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}         25      100.00
+
+{com}. describe reg*
+
+              {txt}storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:reg1           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==     1.0000{p_end}
+{p 0 48}{bind:reg2           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==     2.0000{p_end}
+{p 0 48}{bind:reg3           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==     4.0000{p_end}
+{p 0 48}{bind:reg4           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==     5.0000{p_end}
+{p 0 48}{bind:reg5           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==     8.0000{p_end}
+{p 0 48}{bind:reg6           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==     9.0000{p_end}
+{p 0 48}{bind:reg7           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    10.0000{p_end}
+{p 0 48}{bind:reg8           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    11.0000{p_end}
+{p 0 48}{bind:reg9           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    12.0000{p_end}
+{p 0 48}{bind:reg10          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    13.0000{p_end}
+{p 0 48}{bind:reg11          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    14.0000{p_end}
+{p 0 48}{bind:reg12          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    16.0000{p_end}
+{p 0 48}{bind:reg13          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    17.0000{p_end}
+{p 0 48}{bind:reg14          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    18.0000{p_end}
+{p 0 48}{bind:reg15          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    19.0000{p_end}
+{p 0 48}{bind:reg16          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    20.0000{p_end}
+{p 0 48}{bind:reg17          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    21.0000{p_end}
+{p 0 48}{bind:reg18          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    22.0000{p_end}
+{p 0 48}{bind:reg19          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    23.0000{p_end}
+{p 0 48}{bind:reg20          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    24.0000{p_end}
+{p 0 48}{bind:reg21          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    25.0000{p_end}
+{p 0 48}{bind:reg22          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    27.0000{p_end}
+{p 0 48}{bind:reg23          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    28.0000{p_end}
+{p 0 48}{bind:reg24          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    29.0000{p_end}
+{p 0 48}{bind:reg25          }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}code==    30.0000{p_end}
+
+{com}. regress life reg11 mrate lgdp aging frate bmi
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        25
+{txt}{hline 13}{c +}{hline 34}   F(6, 18)        = {res}    46.02
+{txt}       Model {c |} {res} 296.137873         6  49.3563121   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 19.3055136        18  1.07252854   {txt}R-squared       ={res}    0.9388
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9184
+{txt}       Total {c |} {res} 315.443387        24  13.1434744   {txt}Root MSE        =   {res} 1.0356
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}reg11 {c |}{col 14}{res}{space 2} .0074755{col 26}{space 2} 1.189119{col 37}{space 1}    0.01{col 46}{space 3}0.995{col 54}{space 4} -2.49077{col 67}{space 3} 2.505721
+{txt}{space 7}mrate {c |}{col 14}{res}{space 2}-338.2373{col 26}{space 2} 80.96079{col 37}{space 1}   -4.18{col 46}{space 3}0.001{col 54}{space 4}-508.3296{col 67}{space 3} -168.145
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} 1.170909{col 26}{space 2} .4517515{col 37}{space 1}    2.59{col 46}{space 3}0.018{col 54}{space 4} .2218144{col 67}{space 3} 2.120004
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .0972736{col 26}{space 2} .0994639{col 37}{space 1}    0.98{col 46}{space 3}0.341{col 54}{space 4}-.1116922{col 67}{space 3} .3062395
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-21.64826{col 26}{space 2} 31.45891{col 37}{space 1}   -0.69{col 46}{space 3}0.500{col 54}{space 4}-87.74098{col 67}{space 3} 44.44447
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2}-.0487736{col 26}{space 2} .0943547{col 37}{space 1}   -0.52{col 46}{space 3}0.612{col 54}{space 4}-.2470055{col 67}{space 3} .1494584
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 79.91754{col 26}{space 2} 17.01461{col 37}{space 1}    4.70{col 46}{space 3}0.000{col 54}{space 4} 44.17117{col 67}{space 3} 115.6639
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. regress life reg12 mrate lgdp aging frate bmi
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        25
+{txt}{hline 13}{c +}{hline 34}   F(6, 18)        = {res}    46.84
+{txt}       Model {c |} {res} 296.455708         6  49.4092847   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 18.9876785        18  1.05487103   {txt}R-squared       ={res}    0.9398
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9197
+{txt}       Total {c |} {res} 315.443387        24  13.1434744   {txt}Root MSE        =   {res} 1.0271
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}reg12 {c |}{col 14}{res}{space 2} .6082332{col 26}{space 2}    1.108{col 37}{space 1}    0.55{col 46}{space 3}0.590{col 54}{space 4}-1.719589{col 67}{space 3} 2.936056
+{txt}{space 7}mrate {c |}{col 14}{res}{space 2}-330.9961{col 26}{space 2} 80.88448{col 37}{space 1}   -4.09{col 46}{space 3}0.001{col 54}{space 4}-500.9281{col 67}{space 3}-161.0642
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} 1.151246{col 26}{space 2} .4341154{col 37}{space 1}    2.65{col 46}{space 3}0.016{col 54}{space 4} .2392032{col 67}{space 3} 2.063289
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .1063392{col 26}{space 2} .0910983{col 37}{space 1}    1.17{col 46}{space 3}0.258{col 54}{space 4}-.0850512{col 67}{space 3} .2977296
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-21.10809{col 26}{space 2} 29.99004{col 37}{space 1}   -0.70{col 46}{space 3}0.491{col 54}{space 4}-84.11481{col 67}{space 3} 41.89864
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2}-.0466628{col 26}{space 2}  .092324{col 37}{space 1}   -0.51{col 46}{space 3}0.619{col 54}{space 4}-.2406283{col 67}{space 3} .1473028
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 79.63782{col 26}{space 2} 16.12689{col 37}{space 1}    4.94{col 46}{space 3}0.000{col 54}{space 4} 45.75648{col 67}{space 3} 113.5192
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. encode country, gen(cntry)
+
+. xtset cntry year
+{res}{txt}{col 8}panel variable:  {res}cntry (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}year, 1975 to 2014
+{txt}{col 17}delta:  {res}1 unit
+
+{com}. xtdes
+
+   {txt}cntry:  {res}1{txt}, {res}2{txt}, ..., {res}25                                     {txt}n ={res}         25
+    {txt}year:  {res}1975, 1976, ..., 2014                             {txt}T ={res}         40
+           {txt}Delta(year) = {res}1 unit
+           {txt}Span(year)  = {res}40 periods
+           {txt}(cntry*year uniquely identifies each observation)
+
+Distribution of T_i:   min      5%     25%       50%       75%     95%     max
+                    {res}    40      40      40        40        40      40      40
+
+{txt}{col 6}Freq.  Percent    Cum. {c |}  Pattern
+ {hline 27}{c +}{c -}{c -}{hline 40}
+{res}       25    100.00  100.00{txt} {c |}  {res}1111111111111111111111111111111111111111
+{txt} {hline 27}{c +}{c -}{c -}{hline 40}
+{res}       25    100.00        {txt} {c |}  {res}XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+{com}. xtsum life mrate aging lgdp frate bmi
+
+{txt}Variable         {c |}      Mean   Std. Dev.       Min        Max {c |}    Observations
+{hline 17}{c +}{hline 44}{c +}{hline 16}
+life{col 10}overall {c |} {res} 74.60933   4.500404     61.985   83.22927{txt} {c |}{col 69}N =    1000
+{col 10}between {c |}{col 31}{res} 3.425953   67.09532   79.13202{txt} {c |}{col 69}n =      25
+{col 10}within  {c |}{col 31}{res} 2.995779   65.54104   83.10933{txt} {c |}     T =      40
+{col 18}{c |}{col 63}{c |}
+mrate{col 10}overall {c |} {res} .0157273   .0138687      .0018      .0656{txt} {c |}{col 69}N =    1000
+{col 10}between {c |}{col 31}{res} .0111694   .0046825   .0371025{txt} {c |}{col 69}n =      25
+{col 10}within  {c |}{col 31}{res}  .008512  -.0085302   .0534973{txt} {c |}     T =      40
+{col 18}{c |}{col 63}{c |}
+aging{col 10}overall {c |} {res} 10.06473    4.71635   2.919668   21.63534{txt} {c |}{col 69}N =    1000
+{col 10}between {c |}{col 31}{res} 4.482039    3.26744   16.55453{txt} {c |}{col 69}n =      25
+{col 10}within  {c |}{col 31}{res} 1.714505   5.696446   15.73504{txt} {c |}     T =      40
+{col 18}{c |}{col 63}{c |}
+lgdp{col 10}overall {c |} {res} 9.425625   1.146288   5.575603   10.90972{txt} {c |}{col 69}N =    1000
+{col 10}between {c |}{col 31}{res} 1.116762   7.061952   10.56734{txt} {c |}{col 69}n =      25
+{col 10}within  {c |}{col 31}{res} .3398629   7.939276   11.07914{txt} {c |}     T =      40
+{col 18}{c |}{col 63}{c |}
+frate{col 10}overall {c |} {res} .5039167   .0095454   .4735827   .5257407{txt} {c |}{col 69}N =    1000
+{col 10}between {c |}{col 31}{res} .0094049   .4808517   .5192268{txt} {c |}{col 69}n =      25
+{col 10}within  {c |}{col 31}{res} .0024728   .4911486   .5161793{txt} {c |}     T =      40
+{col 18}{c |}{col 63}{c |}
+bmi{col 10}overall {c |} {res}   4.2437   4.488453         .6       23.4{txt} {c |}{col 69}N =    1000
+{col 10}between {c |}{col 31}{res} 4.328497     1.1625     17.805{txt} {c |}{col 69}n =      25
+{col 10}within  {c |}{col 31}{res} 1.463472    -1.6838     9.8387{txt} {c |}     T =      40
+
+{com}. xtline life
+{res}
+{com}. 
+. xtline mrate
+{res}
+{com}. 
+. xtline aging
+{res}
+{com}. 
+. xtline lgdp
+{res}
+{com}. 
+. xtline frate
+{res}
+{com}. 
+. xtline bmi
+{res}
+{com}. quietly xtreg life mrate aging lgdp frate bmi,fe
+
+. estimate store FE
+
+. quietly xtreg life mrate aging lgdp frate bmi,re
+
+. estimates store RE
+
+. hausman FE RE,constant sigmamore
+
+{txt}{col 18}{hline 4} Coefficients {hline 4}
+{col 14}{c |}{col 21}(b){col 34}(B){col 49}(b-B){col 59}sqrt(diag(V_b-V_B))
+{col 14}{c |}{col 17}     FE     {col 30}     RE     {col 46}Difference{col 66}S.E.
+{hline 13}{c +}{hline 64}
+{space 7}mrate {c |}{res}{col 18}-167.9557{col 31}-192.0101{col 47} 24.05438{col 63} 4.308451
+{txt}{space 7}aging {c |}{res}{col 18} .7925523{col 31}  .734151{col 47} .0584012{col 63} .0094029
+{txt}{space 8}lgdp {c |}{res}{col 18} 1.337888{col 31} .6296616{col 47} .7082267{col 63} .0951801
+{txt}{space 7}frate {c |}{res}{col 18}-42.31718{col 31}-111.6831{col 47} 69.36589{col 63} 8.885033
+{txt}{space 9}bmi {c |}{res}{col 18} .0182575{col 31}-.0130585{col 47}  .031316{col 63} .0280995
+{txt}{space 7}_cons {c |}{res}{col 18} 77.91041{col 31} 120.6395{col 47}-42.72911{col 63} 5.186499
+{txt}{hline 13}{c BT}{hline 64}
+{ralign 78:b = consistent under Ho and Ha; obtained from xtreg}
+{ralign 78:B = inconsistent under Ha, efficient under Ho; obtained from xtreg}
+
+    Test:  Ho:  difference in coefficients not systematic
+
+{ralign 25:chi2({res:6})} = (b-B)'[(V_b-V_B)^(-1)](b-B)
+{col 27}=  {res}    168.65
+{txt}{col 17}Prob>chi2 =  {res}    0.0000
+{txt}{col 17}(V_b-V_B is not positive definite)
+
+{com}. findit xttest3
+
+. xttest3
+{err}last estimates not xtreg, fe
+{txt}{search r(301), local:r(301);}
+
+{com}. xtreg life mrate aging lgdp frate bmi,fe
+{res}
+{txt}Fixed-effects (within) regression{col 49}Number of obs{col 67}={col 69}{res}     1,000
+{txt}Group variable: {res}cntry{txt}{col 49}Number of groups{col 67}={col 69}{res}        25
+
+{txt}R-sq:{col 49}Obs per group:
+     within  = {res}0.9082{col 63}{txt}min{col 67}={col 69}{res}        40
+{txt}     between = {res}0.8813{col 63}{txt}avg{col 67}={col 69}{res}      40.0
+{txt}     overall = {res}0.8164{col 63}{txt}max{col 67}={col 69}{res}        40
+
+{txt}{col 49}F({res}5{txt},{res}970{txt}){col 67}={col 70}{res}  1920.03
+{txt}corr(u_i, Xb){col 16}= {res}-0.8427{txt}{col 49}Prob > F{col 67}={col 73}{res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-167.9557{col 26}{space 2}  7.32874{col 37}{space 1}  -22.92{col 46}{space 3}0.000{col 54}{space 4}-182.3378{col 67}{space 3}-153.5737
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .7925523{col 26}{space 2} .0254473{col 37}{space 1}   31.14{col 46}{space 3}0.000{col 54}{space 4} .7426141{col 67}{space 3} .8424904
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} 1.337888{col 26}{space 2} .1633245{col 37}{space 1}    8.19{col 46}{space 3}0.000{col 54}{space 4} 1.017378{col 67}{space 3} 1.658398
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-42.31718{col 26}{space 2} 13.76123{col 37}{space 1}   -3.08{col 46}{space 3}0.002{col 54}{space 4} -69.3224{col 67}{space 3}-15.31196
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2} .0182575{col 26}{space 2} .0428114{col 37}{space 1}    0.43{col 46}{space 3}0.670{col 54}{space 4}-.0657561{col 67}{space 3} .1022711
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 77.91041{col 26}{space 2} 7.681358{col 37}{space 1}   10.14{col 46}{space 3}0.000{col 54}{space 4} 62.83642{col 67}{space 3} 92.98441
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 3.2247685
+     {txt}sigma_e {c |} {res} .92098403
+         {txt}rho {c |} {res} .92458561{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+F test that all u_i=0: F({res}24{txt}, {res}970{txt}) = {res}74.28{col 62}{txt}Prob > F = {res}0.0000
+
+{com}. xttest3
+
+{txt}Modified Wald test for groupwise heteroskedasticity
+in fixed effect regression model
+
+{res}H0: sigma(i)^2 = sigma^2 for all i
+
+{txt}chi2 (25)  =   {res} 4872.54
+{txt}Prob>chi2 =    {res}  0.0000
+
+
+{com}. xtreg life mrate aging lgdp frate bmi i.cntry,vce(cluster cntry)
+{res}
+{txt}Random-effects GLS regression                   Number of obs     = {res}     1,000
+{txt}Group variable: {res}cntry                           {txt}Number of groups  = {res}        25
+
+{txt}R-sq:                                           Obs per group:
+     within  = {res}0.9082                                         {txt}min = {res}        40
+{txt}     between = {res}1.0000                                         {txt}avg = {res}      40.0
+{txt}     overall = {res}0.9593                                         {txt}max = {res}        40
+
+                                                {txt}{help j_robustsingular##|_new:Wald chi2(5)}{col 67}={col 70}{res}        .
+{txt}corr(u_i, X)   = {res}0{txt} (assumed)                    Prob > chi2       =     {res}     .
+
+{txt}{ralign 78:(Std. Err. adjusted for {res:25} clusters in cntry)}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-167.9557{col 26}{space 2} 24.96853{col 37}{space 1}   -6.73{col 46}{space 3}0.000{col 54}{space 4}-216.8932{col 67}{space 3}-119.0183
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .7925523{col 26}{space 2} .1338403{col 37}{space 1}    5.92{col 46}{space 3}0.000{col 54}{space 4} .5302301{col 67}{space 3} 1.054874
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} 1.337888{col 26}{space 2} 1.179977{col 37}{space 1}    1.13{col 46}{space 3}0.257{col 54}{space 4}-.9748235{col 67}{space 3}   3.6506
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-42.31718{col 26}{space 2} 55.33696{col 37}{space 1}   -0.76{col 46}{space 3}0.444{col 54}{space 4}-150.7756{col 67}{space 3} 66.14128
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2} .0182575{col 26}{space 2} .1528346{col 37}{space 1}    0.12{col 46}{space 3}0.905{col 54}{space 4}-.2812927{col 67}{space 3} .3178077
+{txt}{space 12} {c |}
+{space 7}cntry {c |}
+{space 2}Argentina  {c |}{col 14}{res}{space 2} 3.669355{col 26}{space 2} 1.517465{col 37}{space 1}    2.42{col 46}{space 3}0.016{col 54}{space 4}  .695179{col 67}{space 3} 6.643531
+{txt}{space 2}Australia  {c |}{col 14}{res}{space 2} 2.099999{col 26}{space 2} .4119319{col 37}{space 1}    5.10{col 46}{space 3}0.000{col 54}{space 4} 1.292628{col 67}{space 3} 2.907371
+{txt}{space 4}Belgium  {c |}{col 14}{res}{space 2}-2.017064{col 26}{space 2} .5757855{col 37}{space 1}   -3.50{col 46}{space 3}0.000{col 54}{space 4}-3.145583{col 67}{space 3}-.8885456
+{txt}{space 4}Britain  {c |}{col 14}{res}{space 2}-1.547343{col 26}{space 2} .7092024{col 37}{space 1}   -2.18{col 46}{space 3}0.029{col 54}{space 4}-2.937354{col 67}{space 3}-.1573322
+{txt}{space 5}Canada  {c |}{col 14}{res}{space 2} 2.042533{col 26}{space 2} .2714055{col 37}{space 1}    7.53{col 46}{space 3}0.000{col 54}{space 4} 1.510588{col 67}{space 3} 2.574478
+{txt}{space 6}Chile  {c |}{col 14}{res}{space 2} 6.074487{col 26}{space 2} 1.428016{col 37}{space 1}    4.25{col 46}{space 3}0.000{col 54}{space 4} 3.275626{col 67}{space 3} 8.873347
+{txt}{space 6}China  {c |}{col 14}{res}{space 2}  7.00043{col 26}{space 2} 3.548405{col 37}{space 1}    1.97{col 46}{space 3}0.049{col 54}{space 4} .0456832{col 67}{space 3} 13.95518
+{txt}{space 3}Columbia  {c |}{col 14}{res}{space 2} 7.095558{col 26}{space 2} 1.620171{col 37}{space 1}    4.38{col 46}{space 3}0.000{col 54}{space 4} 3.920081{col 67}{space 3} 10.27103
+{txt}{space 7}Cuba  {c |}{col 14}{res}{space 2} 4.744823{col 26}{space 2} 2.455653{col 37}{space 1}    1.93{col 46}{space 3}0.053{col 54}{space 4}-.0681674{col 67}{space 3} 9.557814
+{txt}{space 4}Finland  {c |}{col 14}{res}{space 2} -1.44056{col 26}{space 2} .4608286{col 37}{space 1}   -3.13{col 46}{space 3}0.002{col 54}{space 4}-2.343768{col 67}{space 3}-.5373528
+{txt}{space 5}France  {c |}{col 14}{res}{space 2}-.4605781{col 26}{space 2} .5725285{col 37}{space 1}   -0.80{col 46}{space 3}0.421{col 54}{space 4}-1.582713{col 67}{space 3} .6615571
+{txt}{space 5}Greece  {c |}{col 14}{res}{space 2}-.4240178{col 26}{space 2} 1.068528{col 37}{space 1}   -0.40{col 46}{space 3}0.691{col 54}{space 4}-2.518295{col 67}{space 3} 1.670259
+{txt}{space 4}Iceland  {c |}{col 14}{res}{space 2} 3.236936{col 26}{space 2} .6368498{col 37}{space 1}    5.08{col 46}{space 3}0.000{col 54}{space 4} 1.988733{col 67}{space 3} 4.485138
+{txt}{space 6}Italy  {c |}{col 14}{res}{space 2}-.8289889{col 26}{space 2} .8348476{col 37}{space 1}   -0.99{col 46}{space 3}0.321{col 54}{space 4} -2.46526{col 67}{space 3} .8072824
+{txt}{space 5}Jordan  {c |}{col 14}{res}{space 2}  6.98062{col 26}{space 2} 2.738974{col 37}{space 1}    2.55{col 46}{space 3}0.011{col 54}{space 4}  1.61233{col 67}{space 3} 12.34891
+{txt}{space 6}Korea  {c |}{col 14}{res}{space 2} 3.851243{col 26}{space 2} 1.278149{col 37}{space 1}    3.01{col 46}{space 3}0.003{col 54}{space 4} 1.346116{col 67}{space 3} 6.356369
+{txt}{space 5}Mexico  {c |}{col 14}{res}{space 2} 7.467113{col 26}{space 2} 1.103632{col 37}{space 1}    6.77{col 46}{space 3}0.000{col 54}{space 4} 5.304034{col 67}{space 3} 9.630192
+{txt}New Zealand  {c |}{col 14}{res}{space 2} 1.967329{col 26}{space 2}  .333951{col 37}{space 1}    5.89{col 46}{space 3}0.000{col 54}{space 4} 1.312797{col 67}{space 3} 2.621861
+{txt}{space 3}Paraguay  {c |}{col 14}{res}{space 2} 6.788971{col 26}{space 2}  2.16912{col 37}{space 1}    3.13{col 46}{space 3}0.002{col 54}{space 4} 2.537573{col 67}{space 3} 11.04037
+{txt}Philippines  {c |}{col 14}{res}{space 2} 6.323101{col 26}{space 2} 2.964497{col 37}{space 1}    2.13{col 46}{space 3}0.033{col 54}{space 4} .5127935{col 67}{space 3} 12.13341
+{txt}{space 3}Portugal  {c |}{col 14}{res}{space 2}-.8616127{col 26}{space 2} 1.311007{col 37}{space 1}   -0.66{col 46}{space 3}0.511{col 54}{space 4}-3.431139{col 67}{space 3} 1.707914
+{txt}{space 2}Singapore  {c |}{col 14}{res}{space 2} 4.690954{col 26}{space 2} 1.449553{col 37}{space 1}    3.24{col 46}{space 3}0.001{col 54}{space 4} 1.849883{col 67}{space 3} 7.532026
+{txt}{space 6}Spain  {c |}{col 14}{res}{space 2} .9567608{col 26}{space 2} .8241304{col 37}{space 1}    1.16{col 46}{space 3}0.246{col 54}{space 4}-.6585051{col 67}{space 3} 2.572027
+{txt}{space 4}Tailand  {c |}{col 14}{res}{space 2} 5.110629{col 26}{space 2} 2.526217{col 37}{space 1}    2.02{col 46}{space 3}0.043{col 54}{space 4} .1593342{col 67}{space 3} 10.06192
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 75.00959{col 26}{space 2} 31.57637{col 37}{space 1}    2.38{col 46}{space 3}0.018{col 54}{space 4} 13.12104{col 67}{space 3} 136.8981
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res}         0
+     {txt}sigma_e {c |} {res} .92098403
+         {txt}rho {c |} {res}         0{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+
+{com}. estimates store LSDV
+
+. xtreg life mrate aging lgdp frate bmi,fe
+{res}
+{txt}Fixed-effects (within) regression{col 49}Number of obs{col 67}={col 69}{res}     1,000
+{txt}Group variable: {res}cntry{txt}{col 49}Number of groups{col 67}={col 69}{res}        25
+
+{txt}R-sq:{col 49}Obs per group:
+     within  = {res}0.9082{col 63}{txt}min{col 67}={col 69}{res}        40
+{txt}     between = {res}0.8813{col 63}{txt}avg{col 67}={col 69}{res}      40.0
+{txt}     overall = {res}0.8164{col 63}{txt}max{col 67}={col 69}{res}        40
+
+{txt}{col 49}F({res}5{txt},{res}970{txt}){col 67}={col 70}{res}  1920.03
+{txt}corr(u_i, Xb){col 16}= {res}-0.8427{txt}{col 49}Prob > F{col 67}={col 73}{res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-167.9557{col 26}{space 2}  7.32874{col 37}{space 1}  -22.92{col 46}{space 3}0.000{col 54}{space 4}-182.3378{col 67}{space 3}-153.5737
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .7925523{col 26}{space 2} .0254473{col 37}{space 1}   31.14{col 46}{space 3}0.000{col 54}{space 4} .7426141{col 67}{space 3} .8424904
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} 1.337888{col 26}{space 2} .1633245{col 37}{space 1}    8.19{col 46}{space 3}0.000{col 54}{space 4} 1.017378{col 67}{space 3} 1.658398
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-42.31718{col 26}{space 2} 13.76123{col 37}{space 1}   -3.08{col 46}{space 3}0.002{col 54}{space 4} -69.3224{col 67}{space 3}-15.31196
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2} .0182575{col 26}{space 2} .0428114{col 37}{space 1}    0.43{col 46}{space 3}0.670{col 54}{space 4}-.0657561{col 67}{space 3} .1022711
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 77.91041{col 26}{space 2} 7.681358{col 37}{space 1}   10.14{col 46}{space 3}0.000{col 54}{space 4} 62.83642{col 67}{space 3} 92.98441
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res} 3.2247685
+     {txt}sigma_e {c |} {res} .92098403
+         {txt}rho {c |} {res} .92458561{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+F test that all u_i=0: F({res}24{txt}, {res}970{txt}) = {res}74.28{col 62}{txt}Prob > F = {res}0.0000
+
+{com}. xtreg life mrate aging lgdp frate,fe
+{res}
+{txt}Fixed-effects (within) regression{col 49}Number of obs{col 67}={col 69}{res}     1,000
+{txt}Group variable: {res}cntry{txt}{col 49}Number of groups{col 67}={col 69}{res}        25
+
+{txt}R-sq:{col 49}Obs per group:
+     within  = {res}0.9082{col 63}{txt}min{col 67}={col 69}{res}        40
+{txt}     between = {res}0.8825{col 63}{txt}avg{col 67}={col 69}{res}      40.0
+{txt}     overall = {res}0.8170{col 63}{txt}max{col 67}={col 69}{res}        40
+
+{txt}{col 49}F({res}4{txt},{res}971{txt}){col 67}={col 70}{res}  2402.01
+{txt}corr(u_i, Xb){col 16}= {res}-0.8433{txt}{col 49}Prob > F{col 67}={col 73}{res}0.0000
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-166.0664{col 26}{space 2} 5.835541{col 37}{space 1}  -28.46{col 46}{space 3}0.000{col 54}{space 4}-177.5181{col 67}{space 3}-154.6146
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .7924121{col 26}{space 2} .0254345{col 37}{space 1}   31.16{col 46}{space 3}0.000{col 54}{space 4} .7424993{col 67}{space 3}  .842325
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} 1.314195{col 26}{space 2} .1535197{col 37}{space 1}    8.56{col 46}{space 3}0.000{col 54}{space 4} 1.012926{col 67}{space 3} 1.615463
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-43.33061{col 26}{space 2} 13.54879{col 37}{space 1}   -3.20{col 46}{space 3}0.001{col 54}{space 4}-69.91889{col 67}{space 3}-16.74233
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  78.6936{col 26}{space 2} 7.455452{col 37}{space 1}   10.56{col 46}{space 3}0.000{col 54}{space 4} 64.06295{col 67}{space 3} 93.32426
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+     sigma_u {c |} {res}  3.222567
+     {txt}sigma_e {c |} {res} .92059596
+         {txt}rho {c |} {res} .92454914{txt}   (fraction of variance due to u_i)
+{hline 13}{c BT}{hline 64}
+F test that all u_i=0: F({res}24{txt}, {res}971{txt}) = {res}79.74{col 62}{txt}Prob > F = {res}0.0000
+
+{com}. findit xttest2
+
+. xttest2
+{res} 
+{txt}Correlation matrix of residuals:
+
+          __e1     __e2     __e3     __e4     __e5     __e6     __e7     __e8
+ __e1  {res} 1.0000
+{txt} __e2  {res} 0.0736   1.0000
+{txt} __e3  {res} 0.9155  -0.1065   1.0000
+{txt} __e4  {res} 0.5510  -0.4711   0.7619   1.0000
+{txt} __e5  {res} 0.8972  -0.0952   0.9605   0.7905   1.0000
+{txt} __e6  {res} 0.9079  -0.1999   0.9540   0.7124   0.8903   1.0000
+{txt} __e7  {res} 0.4320  -0.0986   0.6320   0.6897   0.6594   0.5443   1.0000
+{txt} __e8  {res}-0.8869   0.1681  -0.9535  -0.7839  -0.9856  -0.8768  -0.6142   1.0000
+{txt} __e9  {res} 0.9322   0.1422   0.8152   0.3607   0.7988   0.7907   0.3605  -0.8004
+{txt}__e10  {res}-0.3678   0.4451  -0.6279  -0.9454  -0.6722  -0.5539  -0.6441   0.6732
+{txt}__e11  {res} 0.6850  -0.2097   0.5796   0.2395   0.5473   0.6799   0.1286  -0.5469
+{txt}__e12  {res} 0.7018  -0.4407   0.8819   0.9426   0.8902   0.8433   0.7566  -0.8935
+{txt}__e13  {res}-0.9175   0.0054  -0.8338  -0.4045  -0.8038  -0.8121  -0.3096   0.8345
+{txt}__e14  {res} 0.8501   0.1414   0.8679   0.5553   0.8517   0.7925   0.4959  -0.8266
+{txt}__e15  {res}-0.5832   0.0241  -0.5415  -0.1030  -0.5286  -0.5261  -0.1528   0.5858
+{txt}__e16  {res} 0.6894  -0.2297   0.8139   0.7179   0.8774   0.7201   0.7199  -0.9005
+{txt}__e17  {res} 0.7990  -0.2725   0.9118   0.7722   0.9360   0.8449   0.7318  -0.9529
+{txt}__e18  {res} 0.0308  -0.4378   0.1327   0.0540   0.0967   0.1865   0.3621  -0.1402
+{txt}__e19  {res} 0.9049  -0.0899   0.9399   0.6521   0.9475   0.8870   0.6082  -0.9581
+{txt}__e20  {res} 0.0549   0.7219  -0.1987  -0.5455  -0.2590  -0.1853  -0.4956   0.3060
+{txt}__e21  {res} 0.0667  -0.5030   0.2136   0.2982   0.2892   0.1931   0.4917  -0.3353
+{txt}__e22  {res}-0.4361   0.2825  -0.5164  -0.3519  -0.5449  -0.4893  -0.5525   0.5867
+{txt}__e23  {res} 0.8282  -0.2635   0.9622   0.8464   0.9535   0.9089   0.7036  -0.9608
+{txt}__e24  {res}-0.1666   0.1663  -0.1932   0.0055  -0.2202  -0.1816  -0.3918   0.2647
+{txt}__e25  {res}-0.8270  -0.2228  -0.6756  -0.1850  -0.7176  -0.6165  -0.1872   0.7419
+
+       {txt}   __e9    __e10    __e11    __e12    __e13    __e14    __e15    __e16
+ __e9  {res} 1.0000
+{txt}__e10  {res}-0.1607   1.0000
+{txt}__e11  {res} 0.6801  -0.0038   1.0000
+{txt}__e12  {res} 0.5488  -0.8475   0.4404   1.0000
+{txt}__e13  {res}-0.9614   0.2076  -0.7043  -0.6013   1.0000
+{txt}__e14  {res} 0.7889  -0.4523   0.4933   0.6727  -0.7558   1.0000
+{txt}__e15  {res}-0.5947   0.0293  -0.5444  -0.3512   0.7056  -0.4602   1.0000
+{txt}__e16  {res} 0.5911  -0.6744   0.4017   0.8558  -0.6545   0.6699  -0.6547   1.0000
+{txt}__e17  {res} 0.7133  -0.6619   0.5485   0.9208  -0.7664   0.7472  -0.6298   0.9615
+{txt}__e18  {res} 0.0675   0.0207   0.3482   0.2671  -0.1746  -0.0366  -0.5045   0.4236
+{txt}__e19  {res} 0.8347  -0.5278   0.6323   0.8290  -0.8693   0.8312  -0.6996   0.9049
+{txt}__e20  {res} 0.1937   0.6054  -0.0360  -0.5652  -0.0583   0.0313   0.2226  -0.5952
+{txt}__e21  {res} 0.0423  -0.2860   0.2719   0.4507  -0.1456   0.0654  -0.4764   0.6505
+{txt}__e22  {res}-0.3899   0.2929  -0.4317  -0.5792   0.4907  -0.3554   0.7426  -0.8174
+{txt}__e23  {res} 0.7028  -0.7442   0.4983   0.9512  -0.7557   0.7873  -0.5508   0.9018
+{txt}__e24  {res}-0.2229  -0.0521  -0.2961  -0.2442   0.3076  -0.0996   0.6662  -0.5729
+{txt}__e25  {res}-0.8706   0.0402  -0.6584  -0.4027   0.8835  -0.6878   0.7965  -0.6458
+
+       {txt}  __e17    __e18    __e19    __e20    __e21    __e22    __e23    __e24
+__e17  {res} 1.0000
+{txt}__e18  {res} 0.4011   1.0000
+{txt}__e19  {res} 0.9535   0.2856   1.0000
+{txt}__e20  {res}-0.5040  -0.6499  -0.2813   1.0000
+{txt}__e21  {res} 0.5657   0.8493   0.4096  -0.8529   1.0000
+{txt}__e22  {res}-0.7678  -0.7820  -0.6988   0.6703  -0.8657   1.0000
+{txt}__e23  {res} 0.9630   0.2521   0.9304  -0.4252   0.3887  -0.6263   1.0000
+{txt}__e24  {res}-0.4890  -0.8943  -0.4289   0.5542  -0.8529   0.8920  -0.3008   1.0000
+{txt}__e25  {res}-0.6740  -0.1440  -0.8121  -0.0972  -0.2216   0.5473  -0.5954   0.4079
+
+       {txt}  __e25
+__e25  {res} 1.0000
+
+{txt}Breusch-Pagan LM test of independence: chi2(300) = {res} 4533.967{txt}, Pr = {res}0.0000
+{txt}Based on 40 complete observations over panel units
+
+{com}. findit xtscc
+
+. xtscc life mrate aging lgdp frate bmi
+{res}
+{txt}Regression with Driscoll-Kraay standard errors{col 50}Number of obs     ={res}      1000
+{txt}Method: {res}Pooled OLS{col 50}{txt}Number of groups  ={res}        25
+{txt}Group variable (i): {res}cntry{col 50}{txt}F({res}  5{txt},{res}    39{txt}){col 68}={res}    645.62
+{txt}maximum lag: {res}3{col 50}{txt}Prob > F          =    {res}0.0000
+{col 50}{txt}R-squared         =    {res}0.8846
+{col 50}{txt}Root MSE          =  {res}  1.5326
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Drisc/Kraay
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-209.5843{col 26}{space 2} 9.278856{col 37}{space 1}  -22.59{col 46}{space 3}0.000{col 54}{space 4}-228.3526{col 67}{space 3}-190.8161
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .2890791{col 26}{space 2} .0511226{col 37}{space 1}    5.65{col 46}{space 3}0.000{col 54}{space 4}  .185674{col 67}{space 3} .3924843
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} .2322374{col 26}{space 2} .1442175{col 37}{space 1}    1.61{col 46}{space 3}0.115{col 54}{space 4}-.0594701{col 67}{space 3} .5239449
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-80.41048{col 26}{space 2} 10.91494{col 37}{space 1}   -7.37{col 46}{space 3}0.000{col 54}{space 4} -102.488{col 67}{space 3}-58.33293
+{txt}{space 9}bmi {c |}{col 14}{res}{space 2}-.1081243{col 26}{space 2} .0126113{col 37}{space 1}   -8.57{col 46}{space 3}0.000{col 54}{space 4}-.1336331{col 67}{space 3}-.0826156
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 113.7861{col 26}{space 2} 5.513232{col 37}{space 1}   20.64{col 46}{space 3}0.000{col 54}{space 4} 102.6345{col 67}{space 3} 124.9376
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+
+{com}. predict e2,residual
+
+. kdensity e2
+{res}
+{com}. sum e2,detial
+{err}option {bf:detial} not allowed
+{txt}{search r(198), local:r(198);}
+
+{com}. sum e2,detail
+
+                          {txt}Residuals
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}-3.562656      -3.724002
+{txt} 5%    {res}-2.577584      -3.714348
+{txt}10%    {res}-2.021054      -3.705683       {txt}Obs         {res}      1,000
+{txt}25%    {res}-1.024952      -3.701833       {txt}Sum of Wgt. {res}      1,000
+
+{txt}50%    {res}-.0521727                      {txt}Mean          {res} 2.23e-09
+                        {txt}Largest       Std. Dev.     {res} 1.528766
+{txt}75%    {res} .9488532       3.278063
+{txt}90%    {res} 2.219328       3.307716       {txt}Variance      {res} 2.337127
+{txt}95%    {res} 2.617699       3.426902       {txt}Skewness      {res}-.0114595
+{txt}99%    {res} 3.083454       3.479577       {txt}Kurtosis      {res} 2.599971
+
+{com}. sort e2
+
+. list year country e2 in 1/20
+{txt}
+     {c TLC}{hline 6}{c -}{hline 11}{c -}{hline 11}{c TRC}
+     {c |} {res}year     country          e2 {txt}{c |}
+     {c LT}{hline 6}{c -}{hline 11}{c -}{hline 11}{c RT}
+  1. {c |} {res}1976     Finland   -3.724002 {txt}{c |}
+  2. {c |} {res}1976       Korea   -3.714348 {txt}{c |}
+  3. {c |} {res}1976     Belgium   -3.705683 {txt}{c |}
+  4. {c |} {res}1979       Korea   -3.701833 {txt}{c |}
+  5. {c |} {res}1975       Korea   -3.688512 {txt}{c |}
+     {c LT}{hline 6}{c -}{hline 11}{c -}{hline 11}{c RT}
+  6. {c |} {res}1978       Korea   -3.684002 {txt}{c |}
+  7. {c |} {res}1977       Korea   -3.650339 {txt}{c |}
+  8. {c |} {res}1975     Belgium   -3.606549 {txt}{c |}
+  9. {c |} {res}1975     Finland   -3.604306 {txt}{c |}
+ 10. {c |} {res}1975   Singapore   -3.583359 {txt}{c |}
+     {c LT}{hline 6}{c -}{hline 11}{c -}{hline 11}{c RT}
+ 11. {c |} {res}1980       Korea   -3.541952 {txt}{c |}
+ 12. {c |} {res}1976   Singapore   -3.510895 {txt}{c |}
+ 13. {c |} {res}1978     Belgium   -3.505433 {txt}{c |}
+ 14. {c |} {res}1981       Korea   -3.462081 {txt}{c |}
+ 15. {c |} {res}1977     Finland   -3.433482 {txt}{c |}
+     {c LT}{hline 6}{c -}{hline 11}{c -}{hline 11}{c RT}
+ 16. {c |} {res}1982       Korea   -3.340465 {txt}{c |}
+ 17. {c |} {res}1983       Korea   -3.326042 {txt}{c |}
+ 18. {c |} {res}1977   Singapore   -3.276211 {txt}{c |}
+ 19. {c |} {res}1980     Belgium   -3.242092 {txt}{c |}
+ 20. {c |} {res}1977     Belgium   -3.236694 {txt}{c |}
+     {c BLC}{hline 6}{c -}{hline 11}{c -}{hline 11}{c BRC}
+
+{com}. predict lif
+{txt}(option xb assumed; fitted values)
+
+{com}. graph twoway scatter lif e2
+{res}
+{com}. test mrate aging
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}mrate = 0{p_end}
+{p 0 7}{space 1}{text:( 2)}{space 1} aging = 0{p_end}
+
+{txt}       F(  2,    39) ={res}  401.25
+{txt}{col 13}Prob > F ={res}    0.0000
+
+{com}. xtscc life mrate aging lgdp frate year,fe
+{res}
+{txt}Regression with Driscoll-Kraay standard errors{col 50}Number of obs     ={res}      1000
+{txt}Method: {res}Fixed-effects regression{col 50}{txt}Number of groups  ={res}        25
+{txt}Group variable (i): {res}cntry{col 50}{txt}F({res}  5{txt},{res}    39{txt}){col 68}={res}  25334.64
+{txt}maximum lag: {res}3{col 50}{txt}Prob > F          =    {res}0.0000
+{col 50}{txt}within R-squared  =    {res}0.9475
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Drisc/Kraay
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-83.02468{col 26}{space 2} 10.69213{col 37}{space 1}   -7.77{col 46}{space 3}0.000{col 54}{space 4}-104.6516{col 67}{space 3}-61.39781
+{txt}{space 7}aging {c |}{col 14}{res}{space 2}  .268089{col 26}{space 2} .0523774{col 37}{space 1}    5.12{col 46}{space 3}0.000{col 54}{space 4} .1621458{col 67}{space 3} .3740322
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2} .9763249{col 26}{space 2} .1718425{col 37}{space 1}    5.68{col 46}{space 3}0.000{col 54}{space 4} .6287407{col 67}{space 3} 1.323909
+{txt}{space 7}frate {c |}{col 14}{res}{space 2}-24.33778{col 26}{space 2} 17.52616{col 37}{space 1}   -1.39{col 46}{space 3}0.173{col 54}{space 4}-59.78779{col 67}{space 3} 11.11222
+{txt}{space 8}year {c |}{col 14}{res}{space 2} .1427584{col 26}{space 2} .0087161{col 37}{space 1}   16.38{col 46}{space 3}0.000{col 54}{space 4} .1251284{col 67}{space 3} .1603884
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-208.4531{col 26}{space 2} 16.93714{col 37}{space 1}  -12.31{col 46}{space 3}0.000{col 54}{space 4}-242.7117{col 67}{space 3}-174.1945
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+
+{com}. xtscc life mrate aging lgdp year,fe
+{res}
+{txt}Regression with Driscoll-Kraay standard errors{col 50}Number of obs     ={res}      1000
+{txt}Method: {res}Fixed-effects regression{col 50}{txt}Number of groups  ={res}        25
+{txt}Group variable (i): {res}cntry{col 50}{txt}F({res}  4{txt},{res}    39{txt}){col 68}={res}  22872.37
+{txt}maximum lag: {res}3{col 50}{txt}Prob > F          =    {res}0.0000
+{col 50}{txt}within R-squared  =    {res}0.9472
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}  Drisc/Kraay
+{col 1}        life{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}mrate {c |}{col 14}{res}{space 2}-77.67429{col 26}{space 2} 13.88021{col 37}{space 1}   -5.60{col 46}{space 3}0.000{col 54}{space 4}-105.7497{col 67}{space 3}-49.59892
+{txt}{space 7}aging {c |}{col 14}{res}{space 2} .2612217{col 26}{space 2} .0475219{col 37}{space 1}    5.50{col 46}{space 3}0.000{col 54}{space 4} .1650996{col 67}{space 3} .3573438
+{txt}{space 8}lgdp {c |}{col 14}{res}{space 2}  1.06739{col 26}{space 2} .1190343{col 37}{space 1}    8.97{col 46}{space 3}0.000{col 54}{space 4} .8266201{col 67}{space 3} 1.308159
+{txt}{space 8}year {c |}{col 14}{res}{space 2} .1436185{col 26}{space 2} .0092714{col 37}{space 1}   15.49{col 46}{space 3}0.000{col 54}{space 4} .1248654{col 67}{space 3} .1623716
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-223.3061{col 26}{space 2} 17.65077{col 37}{space 1}  -12.65{col 46}{space 3}0.000{col 54}{space 4}-259.0082{col 67}{space 3}-187.6041
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\Taiheng.Zhang17\Desktop\eco205.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 1 Dec 2019, 14:55:11
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
