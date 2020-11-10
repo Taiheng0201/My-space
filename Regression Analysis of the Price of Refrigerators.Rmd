@@ -1,0 +1,633 @@
+---
+title: "Regression Analysis of the Price of Refrigerators"
+author: "Hongwei Li, Wei Hu, TaihengZhang " 
+date: \today
+documentclass: article
+output: pdf_document
+toc: 2
+highlight: tango
+dprint: kable
+linkcolor: blue
+keep_tex: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+# Abstract
+The report showed that the global household refrigerators and freezers market size was estimated at USD 72.43 billion in 2017 and expected to continue boosting after that. Moreover, North America is projected to account for the leading share in the global arena throughout the forecast horizon owing to the presence of a large base of urban population, growing nuclear families. However, with the continuous expansion of market share, the competition between brands will become extremely fierce. It is both an opportunity and a challenge for small and medium-sized brands. Out of interest, we will investigate the current refrigerator prices of these brands in the North American market and build a model which will benefit the corresponding decision of the pricing adjustment by these companies.
+
+
+
+
+
+
+# 1. Introduction 
+This report will focus on some small and medium-sized refrigerator brands in the North American household appliances market, aiming to build a general linear regression model of the refrigerator price. We mainly selected the factors which can reflect a refrigerator’s design, space, functionality and energy conservation  as explanatory variables, including (FSIZE, MSIZE, ECOST, S_SQ_FT, Shelves, Features). In the pre-processing stage, we will observe the distribution and shape of variables to determine whether they meet the assumptions of general linear regression. In model building process, we will use OSL to estimate the coefficients of each estimator. And we will adjust our selection of explanatory variables based on the observation on the significance and importance of each coefficient and the correlation matrix between explanatory variables. In addition, we will consider the using of quadratic term and interactive term of variables if necessary.  For multicollinearity and heteroscedasticity testing we will adopt VIF test and WHITE test. For model modification, we will dispose the outliers and leverages and use box-cox method to fix the skewness of the variable. For model evaluation and selection, we will we will comprehensively consider such indicators as AIC, BIC,$\quad R^2$ and RMSE.
+\clearpage
+
+# 2. Data Preprocessing 
+
+## 2.1 Libraries and Data Loading 
+
+- Step 1. Load the program packages required for this article
+```{r}
+library(knitr)
+library(ggplot2)
+library(cowplot)
+library(MASS)
+library(grDevices)
+library(corrplot)
+library(PerformanceAnalytics)
+library(forecast)
+```
+
+- Step 2. Download the data _Refrigerator.csv_ via  <http://research.bus.wisc.edu/RegActuaries>, and save it in a local directory, say
+
+```
+C:/Users/wei.hu17/Downloads/Refrigerator.csv
+
+```
+- Step 3. Read in the data directly by recalling the file name if you set the path of your file as the working directory, otherwise you may use the "choose.files()" alternatively. The R code to read in data is given as below 
+
+```{r}
+#setwd("C:/Users/wei.hu17/Downloads")
+#Refrig <- read.table("C:/Users/wei.hu17/Downloads/Refrigerator.csv",header=TRUE, sep=",")
+Refrig <- read.table("C:/Users/wei.hu17/Downloads/Refrigerator.csv",
+                     header=TRUE, sep=",")
+```
+
+
+## 2.2 Summary of Data 
+
+Get the basic information including the number of observations, how many variables involved and its characteristics (numeric, characteristic, factor, ...)
+
+```{r }
+Refrig$BRANDNAM<-factor(Refrig$BRANDNAM)
+str(Refrig)
+names(Refrig)
+summary(Refrig)
+attach(Refrig)
+```
+
+(@) Basic information is given by:
+
+```
+- Based on the output, we see that there are `r length(PRICE)` observations of `r dim(Refrig)[2]` variables.
+
+- The variables include 
+  `r names(Refrig)`.
+
+- The mean price of the Regrigerators is `r mean(PRICE)`
+
+- Based on the summary output
+
+  1.for numerical type data, the minimum value, the minimum quarter, the 
+    median value, the mean value, the maximum fourth quarter and the 
+    maximum value are given.
+
+  2.for factor type data, counting the numbers of the each factor. 
+
+- (Otherwise, chr type data gives length, class, mode which is not shown here )
+```
+
+
+(@) There is a table form of the basic information of the data and we  prepare for our project [^1] 
+
+[^1]: Here we use ":---" for the alignment to the left. Similarly, we use "---:|" and "|:---:" for the alignment to the right and the center. (Here is the footnote example, see more details in [Cheatsheet](https://rmarkdown.rstudio.com/lesson-15.html))
+
+
+: Description of Data "Refrigerator"
+
+| Name | Character. | Description |
+:----|:----|:-----|
+PRICE | numeric | Price of a refrigerator in 
+RSIZE | numeric | Size of a refrigerator in inch
+ECOST | integer | Average amount of money spent per year to operate the refrigerator
+FSIZE | numeric | Size of the freezer compartment in cubic feet 
+SHELVES | integer | Number of shelves in refrigerator and freezer doors
+S_SQ_FT | numeric | Amount of shelf space, measured in square feet
+FEATURES | integer | Number of features
+BRANDNAM | character | Brand name of the refrigerator
+
+
+## 2.3 Descriptive Analysis
+
+Based on the data, the different characteristics, frequency distribution and data visualization methods are used to roughly describe the data.We can better understand the way phenomena study behavior.It provides basic analysis for the later modeling
+
+\begin{itemize}
+\item First, we have the price difference for different brand refrigerators is according to boxplot, the figure we give follows (code hided):
+\end{itemize}
+```{r ref_difference, fig.align = "center", fig.height = 6, fig.width = 9, fig.cap ="Price difference between different brands", echo=FALSE}
+x<-Refrig[,1]
+y<-Refrig[,8]
+z<-cbind(x,y)
+z<-data.frame(z)
+library(ggplot2)
+ggplot(data = z, mapping = aes(x = BRANDNAM, y = PRICE)) +
+geom_boxplot(mapping = aes(fill = BRANDNAM, color = BRANDNAM), alpha = .5, size = .9) +
+geom_label(mapping = aes(label = x), size = 4, fill = "#F5FFFA", fontface = "bold") +
+theme(axis.text.x = element_text(size = 12, angle = 26,hjust = 1))+xlab(" ")+ylab(" ")+
+ggtitle("Different price of different brands")
+```
+
+\begin{itemize}
+\item Additionally, We can use \textcolor{orange}{"tapply()"} get the average price among different brands, then polar was used to visually express the difference between the average prices.
+\end{itemize}
+
+```{r}
+tapply(Refrig$PRICE, Refrig$BRANDNAM, mean)
+```
+
+```{r  ref_mean, fig.align = "center", fig.height = 7, fig.width = 10, fig.cap ="Different average price of different brands", echo=FALSE}
+tema <- theme(
+  plot.title = element_text(size = 23, hjust = .5),
+  axis.text.x = element_text(size = 13, face = "bold"),
+  axis.text.y = element_text(size = 13, face = "bold",hjust = 1),
+  axis.title.x = element_text(size = 13,hjust = 1),
+  axis.title.y = element_text(size = 13,hjust = 1),
+  legend.position = "none")
+x<-tapply(Refrig$PRICE, Refrig$BRANDNAM, mean)
+x<-round(x,2)
+y<-names(x)
+z<-cbind(x,y)
+z<-data.frame(z)
+
+a <- ggplot(data = z, aes(x=y, y=x)) +
+  geom_segment(aes(xend=y, yend=x, color = y), size = 3) +
+  geom_point(size=6, mapping = aes(color = y)) +
+  theme_minimal()+
+  xlab("") +
+  ylab("") +
+  ggtitle("Average price per brand | Polar") +
+  tema
+
+plot_grid(a + coord_polar())
+```
+\clearpage
+\begin{itemize}
+\item Furthermore, we also can use \textcolor{orange}{"cor(Refrig) and pairs(Refrig)"} to get the correlation matrix and pairs scatter plot, but we need to remove the column of BRANDNAM because it's non-numeric. Then we display that in other ways: (code follows):
+\end{itemize}
+
+```{r eval = FALSE}
+ref<-Refrig[,1:7]
+corf<-cor(ref)
+corrplot(corf, method = c("number"),type = c( "lower"),
+         diag = FALSE,add = FALSE, col = NULL, bg = "white",
+         is.corr = TRUE,tl.cex = 1, tl.col = "gray", 
+         tl.offset = 1, tl.srt = 25,order = c( "hclust"),
+         hclust.method = c("complete"))
+pairs(ref, font.main=4, pch=21,
+      bg = c("red1", "green3", "blue2"))
+```
+```
+But the best way to display the correlation and pairs scatter plot
+is the following code (all information in one figure):
+```
+```{r  cor_sca,fig.align = "center",fig.cap = "corr and scatter plot of Refrig data"}
+ref<-Refrig[,1:7]
+chart.Correlation(ref,histogram = T)
+```
+
+\clearpage
+
+# 3. Model Building Process
+
+## 3.1 Model Specifications
+
+First we consider the following linear regression model to fit the data 
+$$ \mbox{PRICE} = \beta_0 + \beta_1 \times  \mbox{RSIZE} + \beta_2 \times \mbox{FSIZE} + \beta_3 \times \mbox{SHELVES} + \beta_4 \times \mbox{FEATURES} + \epsilon $$
+Here $\epsilon \sim N(0, \sigma^2)$ with $\sigma^2$ the dispersion of the normal distributed random error. 
+
+\textcolor{brown}{the model of matrix form as below:}
+
+\begin{align*}
+y &= X  \beta + \epsilon \\
+\begin{pmatrix}
+595 \\
+685\\
+\vdots\\
+880
+\end{pmatrix} &=\begin{pmatrix}
+1 & 12.8 & \ldots & 2 \\
+{1} &  12.9 & \ldots &  1 \\
+\vdots & \vdots & \ddots & \vdots\\
+1 &   14.7       &\ldots & 5
+\end{pmatrix}* \begin{pmatrix}
+\beta_0 \\
+\beta_1\\
+\vdots\\
+\beta_4
+\end{pmatrix}+\begin{pmatrix}
+\epsilon_1 \\
+{\epsilon_2}\\
+\vdots\\
+\epsilon_{37}
+\end{pmatrix}
+\end{align*}
+
+
+## 3.2 Model Inference
+
+Using the Least Squares Estimate, we can get the estimate of the unknown parameter $\boldsymbol{\beta} = (\beta_0, \beta_1, \ldots, \beta_4)^\top$ and its fitted mean of the price for each refrigerator. To this end, we run the following chunk
+
+```{r warning = FALSE}
+Refrig_lm <- lm(PRICE ~ RSIZE + FSIZE + SHELVES + FEATURES,
+                data=Refrig)
+Summary <- summary(Refrig_lm)
+BETA <- Summary$coefficients
+kable(BETA, results = "asis")
+```
+
+Therefore, we have 
+\begin{itemize}
+\item The Least squares estimate $\widehat{\boldsymbol \beta}$ is given by
+\begin{align} \label{estimate.beta}
+\widehat{\boldsymbol \beta} 
+&= (X^\top X)^{-1}X^\top y \notag\\
+&= (`r round(Refrig_lm$coefficients, 3)`)^\top
+\end{align}
+\item Further, using \eqref{estimate.beta},  the expected price of a refrigerator, denoted by $\mu = \mathbb{E}(\mbox{PRICE})$ is estimated as 
+\begin{align} \label{eq::mu}
+\widehat\mu &= -698.89 + 56.50\times \mbox{RSIZE} + 75.40\times \mbox{FSIZE} \notag\\
+& \quad + 35.92\times \mbox{SHELVES} +  25.16 \times \mbox{FEATURES}
+\end{align}
+\textcolor{brown}{Explain the meaning of $\widehat\beta_3 = 35.92$}: 
+$\widehat\beta_3= 35.92$ indicates the coefficient of SHELVES is 35.92, when SHELVES increase(decrease) 1 unit and PRICE will increase(decrease) `r mean(Refrig_lm$coefficients,3,2)` units.
+\end{itemize}
+
+
+\begin{itemize}
+
+\item \textcolor{brown}{The 95\% Confidence Interval of the coefficient of RSIZE is given by}
+
+\end{itemize}
+
+```{r fig.align = "center", fig.height = 1, fig.width = 2, echo=FALSE}
+conf<-confint(Refrig_lm,2,level = 0.95)
+kable(conf, results = "asis")
+```
+
+\begin{itemize}
+
+\item \textcolor{brown}{Is the contribution of SHELVES statistically significant at significance level $\alpha = 0.01$? Why?} 
+ 
+\begin{enumerate}
+\item the contribution of SHELVES is statistically significant at significance level $\alpha = 0.01$
+\item Based on the table shows that t value is enough to prove the probability less than $\alpha = 0.01$
+\end{enumerate}
+ 
+\end{itemize}
+
+
+A natural  question is how well the model fits to the data, i.e., how about the *model adequacy*. In other words, we need to interpret how much information of the Price is extracted from the predictors, how accurate the specified model fits to the data. 
+
+## 3.3 Model Adequacy Checking 
+
+Basically, we employ the **Multiple R-squared** and the **Residual standard error** $s= \widehat\sigma=\sqrt{SSE/(n-p-1)}$ to check the model adequacy. It is available via the summary of the regression object "Refrig_lm" defined as "lm(PRICE \~ ...)" aforementioned. We have 
+$$ \widehat\sigma^2 = 68.11^2, \quad R^2 = 0.789 $$
+```{r include= FALSE, warning= FALSE}
+sigma <- Summary$sigma
+R2 <- Summary$r.squared
+```
+
+\textcolor{brown}{Therefore, we have the following conclusions}
+
+\begin{enumerate}
+
+\item R2 = 0.789, indicates that the model explains 78.9% of the variability in price of refrigerators.
+
+\item The residual standard error with 28 degrees of freedom is 68.11
+
+\item Reducing the influence from the number of parameters for fitness level, so we using adjusted R2, which equal 0.7626 and indicates that the model explains 76.26% of the variability in price of refrigerators.
+
+\end{enumerate}
+
+
+Now, it seems that the multiple linear regression model fits the data very well. The next step is to validate the model assumptions before we predict the price of the refrigerator given its information concerning RSIZE, FSIZE, SHELVES etc. 
+
+## 3.4 Model Validation
+
+For a linear regression model above, i.e., for each refrigerator's price, we specify it as follows 
+$$ \mbox{PRICE}_i = \beta_0 + \beta_1 \times  \mbox{RSIZE}_i + \beta_2 \times \mbox{FSIZE}_i + \beta_3 \times \mbox{SHELVES}_i + \beta_4 \times \mbox{FEATURES}_i + \epsilon_i $$
+Here $\epsilon_i$ stands for \textcolor{brown}{the influences except for all independent variables} and $i = 1, \ldots, `r length(Refrig$PRICE)`$. 
+
+\textcolor{brown}{The assumptions on this model are listed as below.}
+
+\begin{enumerate}
+
+\item The relationship between treatments and the mean response PRICE is linear.
+
+\item The variance of residual is the same for any value of regressor. 
+
+\item Observations are independent of each other.
+
+\item For any fixed value of independent variable , Dependent variable PRICE is normally distributed.
+
+\end{enumerate}
+
+Residual plots are very useful to validate the assumptions on , constant variance, normality of the residuals as well as the unusual data.  We can simply plot the Regression object "Refrig_lm"
+
+
+```{r Residual_plot, fig.height = 6, fig.width = 9, echo= FALSE}
+par(mfrow = c(2,2))
+plot(Refrig_lm) 
+```
+
+\textcolor{brown}{Based on the plots above,we get the conclusions below}
+
+\begin{enumerate}
+
+\item First, the Fitted vs Residual figure shows the variance is relatively constant and The Normal Q-Q plot appears to show the residuals stray from normal in the tails but fit decently well in the middle of the data but this could be due to having such a small sample set.
+
+\item Second, the Scale-Location figure shows the deviation of variance from a constant is affected by outliers and leverages.
+
+\item Third, the Residual vs Leverage appears that the residuals has constant variance which we were hoping to find when the leverages are ignored. 
+
+\end{enumerate}
+
+Another approach to get the residuals plots one by one is as follows.
+
+```{r Residual_plot_1, echo = TRUE, echo = FALSE}
+plot(Refrig_lm, which = 1) # Assign which by 2,3,4 
+# to give you the remaining plots. 
+```
+
+Next,  we would check if the _other_ independent variable ECOST, the energy of the cost is needed to add to the model or not by using the _added plot_. We can check if the linear regression relationship between PRICE and RSIZE is clearly confirmed or other trends like quadratic term of _RSIZE_ are indicated or not, which can be shown by the Residual plots against the explanatory variable which is already in the model:
+
+```{r Add_Partial, fig.height = 3.5, fig.width = 10}
+par(mfrow = c(1,2))
+Res <- resid(Refrig_lm)
+Res_ECOST <- resid(lm(ECOST ~ RSIZE + FSIZE + SHELVES, data = Refrig))
+plot(Res ~ Refrig$RSIZE, xlab = "RSIZE", ylab = "Residuas", 
+     main = "Residuals against RSIZE")
+plot(Res ~ Res_ECOST, xlab = "Residuals of Modelling ECOST", 
+     ylab = "Residuas of Modelling PRICE", 
+     main = "Added Plots of PRICE against ECOST")
+```
+
+\textcolor{brown}{We get the conclusion below}
+ 
+\begin{enumerate}
+
+\item The Residual against RSIZE figure shows that the residuals show a kind of quadratic tendency, which indicated that the regression model does not capture the nonlinear characteristic of explanatory variable RSIZE.
+\item The added plot which allows us to look at the effect of the energy of the cost to price of refrigerators while removing the effect of the existing explanatory variables. It seems to be a great deal of linearity.
+\item The explanatory RSIZE requires a nonlinear transformation and added variable ECOST can be considered into regression model.
+
+\end{enumerate}
+
+
+
+## 3.5 Unusual data detection
+
+In the following, we consider if there are some outliers or influential data:
+
+```{r}
+cut.off <- 1.96
+rstudent <- rstudent(Refrig_lm)
+index <- which(abs(rstudent) > cut.off)
+Refrig[index, ]
+```
+
+
+\textcolor{brown}{The refrigerators which are outliers, and describe its features (corresponding RSIZE, SHELVES ...)} 
+
+\textcolor{brown}1.Point21 has a smallest value of SHELVES comparing with other points of the sample set. Its values of variables ECOST, RSIZE, FSIZE are close to means and its values of variable S_SQ_FT, FEATURES are close to 3rd quantiles.
+
+\textcolor{brown}2.Point33 has the largest values of variable Features of the sample set and it has approximate maximum value of variable FSIZE. Its values of variables ECOST is quite large as well and its values of variables RSIZE and S_ SQ_FT are close to means.
+
+\textcolor{brown}3.Point34 has minimum value of variable S_SQ_FT and maximum value of variable SHELVES of the sample set. Its value of variables ECOST, Feature and FSIZE are also large comparing with other points. Its value of variable RSIZE is close to mean as well.
+
+Additionally, we use the influence of coefficients like Cooks' distance to check if an individual data changes the model fitting heavily. See more details in Topic 3 for the measures and the definition of leverages etc.
+
+
+```{r tab1, results = 'asis'}
+Leverage_Influence <- influence.measures(Refrig_lm)$infmat
+LI <- round(Leverage_Influence[,-7], 3)
+library(knitr)
+kable(LI, caption = "Influence and Leverge of 
+      Modelling PRICE of Refrigerator")
+```
+
+```{r cooks_dis,fig.align = "center", fig.height = 4, fig.width = 9, fig.cap = "Cooks' distance"}
+plot(Refrig_lm,which = 4,sub.caption = NULL)
+```
+
+
+Take the cut-off= `r 4/(length(PRICE) - length(coef(Refrig_lm)))`, `r 2*length(coef(Refrig_lm)) /length(PRICE)` for cooks' distance and high leverage point. 
+
+\textcolor{brown}{We can observe three influential data points through plot of cook's distance:}
+ 
+\begin{enumerate}
+\item The 21th observation
+\item The 33th observation
+\item The 34th observation
+\end{enumerate}
+
+Because the cook's distance greater than ${4/(n-p-1)}$,the n represents the number of observations and the p represents the number of parameters.
+
+
+ 
+## 3.6 Model Refitting
+
++ We see the standard error of the estimate of regression coefficient of RSIZE is around 20. Find the Variance Inflation Factor (VIF). 
+
+```{r}
+RSIZE_lm <- lm(RSIZE ~ FSIZE + SHELVES + FEATURES)
+R2 <- summary(RSIZE_lm)$r.squared
+VIFR<-1/(1-R2)
+```
+\textcolor{brown}{Therefore, we have}
+\begin{itemize}
+\item Since for  $x_j$, the $j$th explanatory variable, the VIF is given by 
+$$ VIF_j = 1/(1-R_j^2), $$where $R_j^2$ is the determination of coefficient of modeling $x_j$ by other explanatory variables. We have  VIF of RSIZE is equal to \textcolor{brown}{`r VIFR` }
+\item Similarly, we have the VIF of FSIZE, SHELVES are given by (write down the R chunk and its values)
+\end{itemize}
+```{r fig.align = "center", fig.height = 4, fig.width = 9, fig.cap = "VIF of FSIZE"}
+FSIZE_lm <- lm(FSIZE ~ RSIZE + SHELVES + FEATURES)
+R2_FSIZE <- summary(FSIZE_lm)$r.squared
+VIFF=1/(1-R2_FSIZE)
+kable(VIFF,results = "asis" )
+```
+
+```{r fig.align = "center", fig.height = 4, fig.width = 9, fig.cap = "VIF of SHELVES"}
+SHELVES_lm <- lm(SHELVES ~ RSIZE + FSIZE + FEATURES)
+R2_SHELVES <- summary(SHELVES_lm)$r.squared
+VIFS=1/(1-R2_SHELVES)
+kable(VIFS,results = "asis" )
+```
+
+\begin{itemize}
+\item Co-linearity problem is common and the alternative regression model  is to penalize the large coefficient.  
+The idea is \textcolor{brown}{Alternative Ridge/Lasso regressions}
+\end{itemize}
+
+
+
++ Based on the unusual data detection, one can properly improve the model fitting by removing the unusual data or the influential data.
+
+Replace the original data *Refrig* and redefine it as follows
+
+```{r}
+hat <- hatvalues(Refrig_lm)
+c<- 2
+index_lev <- which(hat > c*mean(hat))
+Refrig_rm <- Refrig[-index_lev, ]
+#Remove the high leverage points 
+detach(Refrig)
+Refrig <- Refrig_rm 
+attach(Refrig)
+```
+\textcolor{brown}{Proceed with the regression modeling analysis below}
+
++ Based on the influential data detection, one can properly improve the model fitting by removing the unusual data or the influential data. Replace the original data *Refrig* and redefine it as follows
+
+```{r}
+Refig_modi1 <- lm(PRICE ~ RSIZE + FSIZE + SHELVES + FEATURES, data=Refrig)
+summary(Refig_modi1)
+```
+
+## 3.7 Establish the simple and accurate model
+
+Consider the stepwise approach under the AIC criteria:
+
+```{r}
+ref.model <- lm(PRICE ~ RSIZE + ECOST^2 + SHELVES + FEATURES + FSIZE, data = Refrig)
+step(ref.model, direction = "both")
+```
+\textcolor{brown}{Based on the output, the best model under criteria "AIC" as below}:
+
+The best model include explanatory variables \textcolor{brown}{FSIZE,$\quad ECOST^2$,RSIZE,SHELVES and FEATURES}, then we proceed with the best regression model: 
+```{r}
+ref.AIC <- lm(PRICE ~ FSIZE + ECOST^2 + RSIZE + SHELVES + FEATURES)
+summary(ref.AIC)
+BETA <- summary(ref.AIC)$coefficients
+kable(BETA, results="asis")
+```
+
+```{r Residual_plot1,Residual_plot2, fig.height = 6, fig.width = 9}
+par(mfrow = c(2,2))
+plot(ref.AIC) 
+```
+
+
+Consider the stepwise approach under the BIC criteria, where we replace the default constant $k=2$
+with \textcolor{brown}{$k = \log(\mbox{number of the observation})$}: 
+
+```{r}
+ref.model <- lm(PRICE ~ RSIZE + ECOST^2 + SHELVES + FEATURES + FSIZE, data = Refrig)
+step(ref.model, direction = "both", k = log(length(Refrig$PRICE)))
+```
+\textcolor{brown}{Based on the output, the best model under criteria "BIC" as below}:
+
+- The best model include explanatory variables \textcolor{brown}{ECOST,SHELVES,FEATURES and FSIZE}
+
+- Proceed with the best regression model, write down its fitted curve below
+
+```{r}
+ref.BIC <- lm(PRICE ~ FSIZE + ECOST + SHELVES + FEATURES)
+summary(ref.BIC)
+BETA <- summary(ref.BIC)$coefficients
+kable(BETA, results="asis")
+```
+
+```{r Residual_plot2, fig.height = 6, fig.width = 9}
+par(mfrow = c(2,2))
+plot(ref.BIC) 
+```
+
+\begin{itemize}
+\item State the definition of AIC and BIC. Compare the best model under AIC and BIC, and explain the difference of the two criteria using the example. 
+
+\item We can display the formulaS of AIC and BIC:
+\end{itemize}
+$${AIC=2k-2\ln(L)\\
+{BIC=k\ln(n)-2\ln(L)}}$$
+The ${k}$ represents the number of parameters, and ${L}$ represents likelihood function and ${n}$ represent the number of samples.When the two models differ greatly, the difference is mainly reflected in the likelihood function term. When the likelihood function is not significant, the model complexity plays a role, so the model with fewer parameters is the best choice. If we want to increase the degree of fitting, which means we need to find the maximum likelihood, which requires us to add the parameters ${k}$ into the model. However,the model is prone to over-fitting due to the addition of too many parameters. So we use a penalty(${2k}$ in AIC) to restrict it(Wang and Liu,2006). Therefore,the model with a small AIC is better.
+Compared with AIC, there is a larger penalty in BIC, which can avoid over-fitting when we have too many samples.
+The number of parameters of best model in BIC is smaller than AIC from our R-code. This is due to that the fact ${\ln(n)}$ is larger than 2, thereby we need to find a bigger K to punish over-fitting in AIC.
+
+
+
+# 4.Model Results and Conclusions
+
+## 4.1 Model Results
+```{r}
+ref.model <- lm(PRICE ~ FSIZE + ECOST + SHELVES + FEATURES )
+summary(ref.model)
+BETA <- summary(ref.model)$coefficients
+kable(BETA, results="asis")
+kable(accuracy(ref.model))
+```
+
+
+```{r resid_plot,fig.align = "center", fig.height = 6, fig.width = 9, fig.cap ="residuals density", echo=FALSE}
+resid<-data.frame(ref.model$residuals)
+w<-data.frame(ref.model$model)
+tema1 <- theme(
+              plot.title = element_text(size = 23, hjust = .5),
+              axis.text.x = element_text(size = 19, face = "bold"),
+              axis.text.y = element_text(size = 19, face = "bold"),
+              axis.title.x = element_text(size = 21),
+              axis.title.y = element_text(size = 21))
+c <- ggplot(data = resid, mapping = aes(x = ref.model$residuals, fill = "")) +
+  geom_density(mapping = aes(fill = ), color = "black", alpha = .6, size = 1.5) +
+  theme_minimal() +
+  ylab("Density") +
+  xlab("residuals") +
+  ggtitle("residuals density | Histogram") +
+  tema1 +
+  theme(legend.position="bottom", legend.text = element_text(colour="black", size=20, 
+                                                          face="bold"))
+c
+```
+
+
+
+```{r}
+SECOST <- scale(Refrig$ECOST)
+SSHELVES <- scale(Refrig$SHELVES)
+SFSIZE <- scale(Refrig$FSIZE)
+SFEATURE <- scale(Refrig$FEATURES)
+SPRICE <- scale(Refrig$PRICE)
+ref.ST <- lm(SPRICE ~ SECOST+ SSHELVES + SFSIZE + SFEATURE,
+             data = Refrig)
+summary(ref.ST)
+BETA <- summary(ref.ST)$coefficients
+kable(BETA, results="asis")
+```
+
+```{r fig.boxcox, fig.align = "center", fig.height = 4, fig.width = 5, fig.cap = "boxcox"}
+boxcox(ref.model)
+```
+
+\clearpage
+## 4.2 Conclusions
+\begin{itemize}
+\item The unbiased estimate of the coefficient on FSIZE is 61.136, which means one percent increase on FSIZE will increase refrigerator price by 61.136 dollars, and a clearly positive impact can be concluded.  The second coefficient of the unbiased estimator ECOST is -5.434. With one unit negative change on ECOST, refrigerator is expected to decrease 5.434 dollars. The estimate of the coefficient on feature is 16.682, indicating that refrigerator price will increase 16.682 dollars with each additional feature. The last coefficient of the unbiased estimator Shelves is 45.646, showing that an increase in the number of shelves per unit will increase the price by 45.646 dollars.
+\item The goodness of fit$\quad R^2$ is how much the dependent variable can be explained by regressors in the regression.$\quad R^2$ of this regression model is 0.641, which is greater than 0.5, indicating relative sound goodness of fit. Root MSE is about 49.763, indicating good accuracy of the model. 
+\item Since refrigerator price is an important reference index of an electric appliance market in a country, the regression model shows a clear relationship between the  the area, space, functions, energy conservation and refrigerator price. Different from other researches, this regression focuses on not only one variable but five variables. It especially gives a new perspective on observing the effects that Ecost has on refrigerator price, and the point is not commonly done before. However, there are still some limitations. Firstly, our data sample is small, which may cause under-fitting. Secondly, there are still some other influential factors excluded and need further research.
+\item Finally, we do a standardized for each explanatory and process the new model. According to the estimated coefficients' absolute value, we can find the SHELVES (0.5417) is the most important for explaining the PRICE. The explanatory ability from strong to weak is FSIZE(0.5106), ECOST(-0.4687), and FEATURE(0.3439). 
+\end{itemize}
+
+\clearpage
+# References
+```
+[1] Edward W. Frees. Regression modelling with Actuarial and Finance Applications. 
+
+Cambridge University Press. 2010. 
+
+
+[2] Wang, Y., & Liu, Q. (2006). Comparison of Akaike information criterion (AIC) 
+and Bayesian information criterion (BIC) in selection of stock–recruitment 
+relationships.Fisheries Research, 77(2), 220–225.
+
+```
+
+
+
+
